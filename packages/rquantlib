@@ -1,0 +1,16 @@
+#!/bin/bash
+set -x
+set -e
+
+curl -O http://softlayer-dal.dl.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.gz 
+tar xzvf boost_1_55_0.tar.gz
+cd boost_1_55_0/
+
+VERSION=1.4
+curl -O http://softlayer-dal.dl.sourceforge.net/project/quantlib/QuantLib/$VERSION/QuantLib-$VERSION.tar.gz
+tar -zxvf QuantLib-$VERSION.tar.gz
+cd QuantLib-$VERSION
+
+./configure
+make
+make install

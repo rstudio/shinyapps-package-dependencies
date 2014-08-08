@@ -1,0 +1,15 @@
+#!/bin/bash
+set -x
+set -e
+
+free -m
+
+DIR=/vagrant
+
+PACKAGE=$1
+
+bash $DIR/packages/$PACKAGE
+
+sudo R -e "install.packages('$PACKAGE', repos='http://cran.rstudio.com/'); library('$PACKAGE')"
+
+exit $?

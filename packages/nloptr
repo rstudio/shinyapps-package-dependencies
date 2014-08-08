@@ -1,0 +1,12 @@
+#!/bin/bash
+set -x
+set -e
+
+VERSION=2.4.2
+curl -O http://ab-initio.mit.edu/nlopt/nlopt-$VERSION.tar.gz
+tar -zxvf nlopt-$VERSION.tar.gz
+cd nlopt-$VERSION
+
+CFLAGS="-fPIC" ./configure
+make
+make install
