@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder ".", "/vagrant"
 
   config.vm.provider "docker" do |d|
-    d.image = "cbarraford/shinyapps-package-dependencies:v1"
+    d.image = "cbarraford/r3x:latest"
     d.vagrant_vagrantfile = 'host_Vagrantfile'
   end
 
