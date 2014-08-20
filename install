@@ -1,0 +1,41 @@
+#!/bin/bash
+
+black () { color_text 30; }
+blue () { color_text 34; }
+green () { color_text 32; }
+cyan () { color_text 36; }
+red () { color_text 31; }
+purple () { color_text 35; }
+brown () { color_text 33; }
+light_gray () { color_text 37; }
+
+color_text () {
+  while read data; do echo -e "\033[$1m$data"; done
+  echo -e -n "\033[0m" # clear the color
+}
+
+DIR=`dirname $0`
+
+PACKAGES=$@
+
+for PACKAGE in $PACKAGES; do
+
+    PACKAGE_DIR=$DIR/packages/$PACKAGE
+
+    if [ -f $PACKAGE_DIR/install ]; then
+        echo " ***** PACKAGE $PACKAGE" | purple
+
+        echo " ***** INSTALLING..." | purple
+        bash $PACKAGE_DIR/install
+
+        return_code=$?
+        if [[ $return_code != 0 ]] ; then
+            echo "$PACKAGE... FAILED" | red
+            exit $return_code
+        else
+            echo "$PACKAGE... SUCCESS" | green
+        fi
+    fi
+done
+
+exit 0
