@@ -6,6 +6,7 @@ apt-get -qq update
 apt-get -y --force-yes install libboost-all-dev
 
 VERSION=1.4
+cd /tmp
 wget http://softlayer-dal.dl.sourceforge.net/project/quantlib/QuantLib/$VERSION/QuantLib-$VERSION.tar.gz
 tar -zxvf QuantLib-$VERSION.tar.gz
 cd QuantLib-$VERSION
@@ -13,3 +14,6 @@ cd QuantLib-$VERSION
 ./configure
 make
 make install
+
+# cleanup
+rm -rf /tmp/QuantLib-$VERSION /tmp/QuantLib-$VERSION.tar.gz
