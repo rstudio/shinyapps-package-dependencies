@@ -1,9 +1,8 @@
 shinyapps-package-dependencies
 ==============================
 
-This repo is a holding place that has bash scripts that install system layer dependencies for R packages. This allows shinyapps users to install R packages that require other software to be install on the server.
+Some R packages require other software and libraries to be installed on the host server in order for the R package to function. This repository is used in [shinyapps.io](https://www.shinyapps.io/) to install those dependencies if a user's shinyapp utilizes an R package that requires other libraries/software to be install.
 
-Requirements
-============
+To contribute to this repository, read [CONTRIBUTING.md](https://github.com/rstudio/shinyapps-package-dependencies/blob/master/CONTRIBUTING.md)
 
-This repo utilizes [vagrant](http://www.vagrantup.com/) to test the install scripts. Please make sure you [download](http://www.vagrantup.com/downloads.html) the latest version of vagrant before contribulating to the project.
+If you'd like to request the addition of support of a specific R package, [open a github issue](https://github.com/rstudio/shinyapps-package-dependencies/issues).
