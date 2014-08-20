@@ -9,7 +9,7 @@ Steps
 =====
 1. [Fork](https://help.github.com/articles/fork-a-repo) the repository on Github
 2. Create a named feature branch (like `add_package_x_support`)
-3. Write you change [see next section below](https://github.com/rstudio/shinyapps-package-dependencies/blob/master/CONTRIBUTING.md#how-to-add-system-dependency-support-for-an-r-package))
+3. Write you change ([see next section below](https://github.com/rstudio/shinyapps-package-dependencies/blob/master/CONTRIBUTING.md#how-to-add-system-dependency-support-for-an-r-package))
 4. Write tests for your change ([see next section below](https://github.com/rstudio/shinyapps-package-dependencies/blob/master/CONTRIBUTING.md#how-to-add-system-dependency-support-for-an-r-package))
 5. Run the tests, ensuring they all pass
 6. Submit a [Pull Request](https://help.github.com/articles/creating-a-pull-request) using Github
@@ -23,7 +23,7 @@ How to add system dependency support for an R package
 mkdir packages/<r_package_name>
 ```
 
-2. Create a bash script in the directory named install and give it executable permissions
+2. Create a bash script in the directory named `install` and give it executable permissions
 
 ```bash
 touch packages/<r_package_name>/install
@@ -43,5 +43,5 @@ touch packages/<r_package_name>/test.R
 4. Test your install via running this command.
 
 ```bash
-vagrant docker-run shinyapps-package-dependencies -- bash /vagrant/test <r_package_name>
+vagrant docker-run shinyapps-package-dependencies -- /vagrant/test <r_package_name>
 ```
