@@ -1,0 +1,6 @@
+#!/bin/bash
+set -x
+set -e
+
+apt-get -qq update
+apt-get -qq --force-yes install tk8.5 tk8.5-devel tcl8.5 tcl8.5-devel
