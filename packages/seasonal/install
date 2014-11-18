@@ -1,0 +1,28 @@
+#!/bin/bash
+set -x
+set -e
+
+apt-get -qq update
+
+ln -s /usr/bin/gfortran /usr/bin/g77
+
+mkdir -p /opt/x13as
+
+# download & extract X-13ARIMA-SEATS
+mkdir -p /tmp/x13assrc
+mkdir -p /tmp/x13ashtmlsrc
+curl -s -k https://www.census.gov/ts/x13as/unix/x13assrc.tar.gz | tar xzv -C /tmp/x13assrc
+curl -s -k https://www.census.gov/ts/x13as/unix/x13ashtmlsrc.tar.gz | tar xzv -C /tmp/x13ashtmlsrc
+
+# compile x13as
+cd /tmp/x13assrc
+make -f makefile.g77
+cp x13as /opt/x13as
+
+# compile x13asHTML
+cd /tmp/x13ashtmlsrc
+make -f makefile.g77
+cp x13asHTML /opt/x13as
+
+# configure R
+echo X13_PATH = /opt/x13as >> /usr/lib/R/etc/Renviron.site
