@@ -1,0 +1,6 @@
+#!/bin/bash
+set -x
+set -e
+
+apt-get -qq update
+apt-get -qq --force-yes install libglpk-dev
