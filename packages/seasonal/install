@@ -2,17 +2,23 @@
 set -x
 set -e
 
+VERSION="V1.1_B19"
+
 apt-get -qq update
 
 ln -s /usr/bin/gfortran /usr/bin/g77
 
 mkdir -p /opt/x13as
 
-# download & extract X-13ARIMA-SEATS
+# download X-13-ARIMA-SEATS
+test -f "x13assrc_${VERSION}.tar.gz" || curl -s -k -o "x13assrc_${VERSION}.tar.gz" https://www.census.gov/ts/x13as/unix/x13assrc_${VERSION}.tar.gz
+test -f "x13ashtmlsrc_${VERSION}.tar.gz" || curl -s -k -o "x13ashtmlsrc_${VERSION}.tar.gz" https://www.census.gov/ts/x13as/unix/x13ashtmlsrc_${VERSION}.tar.gz
+
+# extract X-13ARIMA-SEATS
 mkdir -p /tmp/x13assrc
 mkdir -p /tmp/x13ashtmlsrc
-curl -s -k https://www.census.gov/ts/x13as/unix/x13assrc.tar.gz | tar xzv -C /tmp/x13assrc
-curl -s -k https://www.census.gov/ts/x13as/unix/x13ashtmlsrc.tar.gz | tar xzv -C /tmp/x13ashtmlsrc
+tar xzv -C /tmp/x13assrc -f x13assrc_${VERSION}.tar.gz
+tar xzv -C /tmp/x13ashtmlsrc -f x13ashtmlsrc_${VERSION}.tar.gz
 
 # compile x13as
 cd /tmp/x13assrc
