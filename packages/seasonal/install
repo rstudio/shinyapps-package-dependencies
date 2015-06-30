@@ -28,7 +28,7 @@ cp x13as /opt/x13as
 # compile x13asHTML
 cd /tmp/x13ashtmlsrc
 make -f makefile.g77
-cp x13asHTML /opt/x13as
+cp x13ashtml /opt/x13as
 
 # configure R
 echo X13_PATH = /opt/x13as >> /usr/lib/R/etc/Renviron.site
