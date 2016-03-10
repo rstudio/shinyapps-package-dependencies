@@ -3,7 +3,7 @@ Contributing to this project
 
 Requirements
 ============
-This repo utilizes [vagrant](http://www.vagrantup.com/) to test the install scripts. Please make sure you [download](http://www.vagrantup.com/downloads.html) the latest version of vagrant before contributing to the project.
+This repo utilizes [Docker](https://www.docker.com/) to test the install scripts. Please make sure you [download](https://docs.docker.com/engine/installation/) the latest version of Docker before contributing to the project.
 
 Steps
 =====
@@ -43,5 +43,5 @@ touch packages/<r_package_name>/test.R
 4. Test your install via running this command.
 
 ```bash
-vagrant docker-run shinyapps-package-dependencies -- /vagrant/test <r_package_name>
+docker run --name shinyapps-package-dependencies -v $(pwd):/shinyapps --rm cbarraford/r3x:latest /shinyapps/test <r_package_name>
 ```
