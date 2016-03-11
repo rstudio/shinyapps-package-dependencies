@@ -3,4 +3,4 @@ set -x
 set -e
 
 apt-get update -qq
-apt-get install -y antiword poppler-utils
+apt-get install -y libpoppler-glib-dev
