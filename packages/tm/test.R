@@ -1,0 +1,5 @@
+options(download.file.method="curl")
+install.packages("tm", repos="https://cran.rstudio.com")
+install.packages("Rpoppler", repos="https://cran.rstudio.com")
+uri <- sprintf("file://%s", system.file(file.path("doc", "tm.pdf"), package = "tm"))
+pdf <- tm::readPDF(engine = 'Rpoppler', control = list(text = "-layout"))(elem = list(uri = uri), language = "en", id = "id1")
