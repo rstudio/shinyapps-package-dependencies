@@ -1,0 +1,6 @@
+options(download.file.method="curl")
+install.packages("rJava", repos="https://cran.rstudio.com")
+library(rJava)
+.jinit()
+s <- .jcall("java/lang/System", "S", "getProperty", "java.version")
+print(s)
