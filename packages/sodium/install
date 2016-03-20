@@ -1,0 +1,9 @@
+#!/bin/bash
+set -x
+set -e
+
+apt-get update -qq
+
+# libsodium backports for < wily
+add-apt-repository -y ppa:chris-lea/libsodium
+apt-get install -y libsodium-dev
