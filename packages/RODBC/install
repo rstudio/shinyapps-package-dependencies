@@ -2,7 +2,7 @@
 set -x
 set -e
 
-apt-get -qq update
+apt-get update -qq
 
 # install freetds drivers
 apt-get -qq -y --force-yes install tdsodbc freetds-bin freetds-common freetds-dev
