@@ -6,3 +6,5 @@ Some R packages require other software and libraries to be installed on the host
 To contribute to this repository, read [CONTRIBUTING.md](https://github.com/rstudio/shinyapps-package-dependencies/blob/master/CONTRIBUTING.md)
 
 If you'd like to request the addition of support of a specific R package, [open a github issue](https://github.com/rstudio/shinyapps-package-dependencies/issues).
+
+[![Build Status](https://travis-ci.org/rstudio/shinyapps-package-dependencies.svg?branch=master)](https://travis-ci.org/rstudio/shinyapps-package-dependencies)
