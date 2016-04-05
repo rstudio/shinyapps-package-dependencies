@@ -2,5 +2,5 @@
 set -x
 set -e
 
-apt-get -qq update
-apt-get -qq --force-yes install libtiff-dev
+apt-get update -qq
+apt-get install -y libtiff-dev

@@ -2,5 +2,5 @@
 set -x
 set -e
 
-apt-get -qq update
-apt-get -qq --force-yes install libdigest-hmac-perl
+apt-get update -qq
+apt-get install -y libdigest-hmac-perl

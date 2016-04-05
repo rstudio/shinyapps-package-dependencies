@@ -1,6 +1,0 @@
-#!/bin/bash
-set -x
-set -e
-
-apt-get -qq update
-apt-get -qq --force-yes install libnetcdf6 libnetcdf-dev netcdf-bin

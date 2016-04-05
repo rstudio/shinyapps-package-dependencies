@@ -2,5 +2,5 @@
 set -x
 set -e
 
-apt-get -qq update
-apt-get -qq --force-yes install libsndfile1 libsndfile1-dev 
+apt-get update -qq
+apt-get install -y libsndfile1 libsndfile1-dev
