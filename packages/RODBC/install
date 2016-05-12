@@ -5,10 +5,10 @@ set -e
 apt-get update -qq
 
 # install freetds drivers
-apt-get -qq -y --force-yes install tdsodbc freetds-bin freetds-common freetds-dev
+apt-get install -y tdsodbc freetds-bin freetds-common freetds-dev
 
 # install postgres drivers
-apt-get -qq -y --force-yes install odbc-postgresql
+apt-get install -y odbc-postgresql
 
 # write odbc config
 cat <<EOF > /etc/odbcinst.ini

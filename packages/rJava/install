@@ -2,11 +2,4 @@
 set -x
 set -e
 
-# add OpenJDK PPA
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 86F44E2A
-echo "deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu precise main" > /etc/apt/sources.list.d/openjdk-ppa.list
-
-apt-get update -qq
-DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openjdk-8-jdk
-
 /usr/bin/R CMD javareconf

@@ -3,4 +3,4 @@ set -x
 set -e
 
 apt-get update -qq
-apt-get install -y libnetcdf6 libnetcdf-dev netcdf-bin
+apt-get install -y libnetcdf-dev netcdf-bin
