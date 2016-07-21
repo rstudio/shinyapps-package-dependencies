@@ -40,8 +40,9 @@ touch packages/<r_package_name>/test.R
 
 5. Write this R script to install the R package and run some basic code to ensure that the package is installed correctly and functional.
 
-4. Test your install via running this command.
+4. Test your install by running these commands:
 
 ```bash
-docker run --name shinyapps-package-dependencies -v $(pwd):/shinyapps --rm cbarraford/r3x:latest /shinyapps/test <r_package_name>
+docker build -t rstudio/r .
+docker run --name shinyapps-package-dependencies -v $(pwd):/shinyapps --rm rstudio/r /shinyapps/test [r_package_name]
 ```
