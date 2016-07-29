@@ -17,7 +17,7 @@ color_text () {
 DIR=`dirname $0`
 
 if [ $# -eq 0 ]; then
-    PACKAGES=$(ls -1 -d $DIR/packages/* | tr '\n' '\0' | xargs -0 -n 1 basename)
+    PACKAGES=$(ls -1 -d $DIR/packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename)
 else
     PACKAGES=$@
 fi

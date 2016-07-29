@@ -2,36 +2,9 @@
 set -x
 set -e
 
-apt-get update -qq
-
-# install freetds drivers
-apt-get install -y tdsodbc freetds-bin freetds-common freetds-dev
-
-# install postgres drivers
-apt-get install -y odbc-postgresql
-
-# write odbc config
-cat <<EOF > /etc/odbcinst.ini
-[FreeTDS]
-Description = TDS driver (Sybase/MS SQL)
-Driver      = libtdsodbc.so
-Setup       = libtdsS.so
-CPTimeout   =
-CPReuse     =
-
-[PostgreSQL ANSI]
-Description = PostgreSQL ODBC driver (ANSI version)
-Driver      = psqlodbca.so
-Setup       = libodbcpsqlS.so
-Debug       = 0
-CommLog     = 1
-UsageCount  = 1
-
-[PostgreSQL Unicode]
-Description = PostgreSQL ODBC driver (Unicode version)
-Driver      = psqlodbcw.so
-Setup       = libodbcpsqlS.so
-Debug       = 0
-CommLog     = 1
-UsageCount  = 1
+debconf-set-selections <<EOF
+libmyodbc libmyodbc/addtoodbc boolean true
+tdsodbc freetds/addtoodbc boolean true
 EOF
+
+dpkg-reconfigure -f noninteractive libmyodbc tdsodbc
