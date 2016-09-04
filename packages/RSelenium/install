@@ -1,0 +1,4 @@
+Rscript -e 'install.packages("RCurl", repos="https://cran.rstudio.com")'
+Rscript -e 'install.packages("bitops", repos="https://cran.rstudio.com")'
+Rscript -e 'install.packages("RJSONIO", repos="https://cran.rstudio.com")'
+Rscript -e 'install.packages("XML", repos="https://cran.rstudio.com")'
