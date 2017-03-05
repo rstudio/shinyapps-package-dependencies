@@ -3,4 +3,4 @@ set -x
 set -e
 
 apt-get update -qq
-apt-get install -y coinor-libsymphony-dev # coinor-libcgl-dev
+apt-get install -y coinor-libsymphony-dev coinor-libcgl-dev
