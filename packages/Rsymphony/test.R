@@ -1,3 +1,5 @@
+options(download.file.method="curl")
+install.packages("Rsymphony", repos="https://cran.rstudio.com")
 library('Rsymphony')
 
 obj <- c(2, 4, 3)

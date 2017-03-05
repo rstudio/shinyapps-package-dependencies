@@ -17,41 +17,35 @@ color_text () {
 DIR=`dirname $0`
 
 if [ $# -eq 0 ]; then
-    PACKAGES=$(ls -1 -d ${DIR}/packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename)
+    PACKAGES=$(ls -1 -d $DIR/packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename)
 else
     PACKAGES=$@
 fi
 
-for PACKAGE in ${PACKAGES}; do
+for PACKAGE in $PACKAGES; do
 
-    PACKAGE_DIR=${DIR}/packages/${PACKAGE}
+    PACKAGE_DIR=$DIR/packages/$PACKAGE
 
-    if [ -f ${PACKAGE_DIR}/install ]; then
+    if [ -f $PACKAGE_DIR/install ]; then
         echo " ***** PACKAGE $PACKAGE" | purple
 
-        echo " ***** INSTALLING SYSTEM DEPENDENCIES..." | purple
-        bash ${PACKAGE_DIR}/install
+        echo " ***** INSTALLING..." | purple
+        bash $PACKAGE_DIR/install
 
-        echo " ***** INSTALLING PACKAGE..." | purple
-        R -e "install.packages('$PACKAGE', repos='http://cran.rstudio.com/'); library('$PACKAGE')"
+        echo " ***** TESTING..." | purple
+        if [ -f $PACKAGE_DIR/test.R ]; then
+            sudo R --verbose -f $PACKAGE_DIR/test.R
+        else
+            sudo R -e "install.packages('$PACKAGE', repos='http://cran.rstudio.com/'); library('$PACKAGE')"
+        fi
+
         return_code=$?
-        if [[ ${return_code} != 0 ]]; then
-            echo "Failed to install $PACKAGE" | red
-            exit ${return_code}
+        if [[ $return_code != 0 ]] ; then
+            echo "$PACKAGE... FAILED" | red
+            exit $return_code
+        else
+            echo "$PACKAGE... SUCCESS" | green
         fi
-
-        if [ -f ${PACKAGE_DIR}/test.R ]; then
-            echo " ***** TESTING..." | purple
-            R --verbose -f ${PACKAGE_DIR}/test.R
-
-            return_code=$?
-            if [[ ${return_code} != 0 ]] ; then
-                echo "$PACKAGE... FAILED" | red
-                exit ${return_code}
-            fi
-        fi
-
-        echo "$PACKAGE... SUCCESS" | green
     else
         echo "Unable to find '$PACKAGE' in $DIR/packages, exiting..." | red
         exit 1
