@@ -30,7 +30,7 @@ for PACKAGE in $PACKAGES; do
         echo " ***** PACKAGE $PACKAGE" | purple
 
         echo " ***** INSTALLING..." | purple
-        bash $PACKAGE_DIR/install
+        bash $PACKAGE_DIR/install | ts
 
         echo " ***** TESTING..." | purple
         if [ -f $PACKAGE_DIR/test.R ]; then

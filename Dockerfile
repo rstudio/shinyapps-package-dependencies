@@ -36,6 +36,7 @@ RUN apt-get update -qq && \
     libxt-dev \
     libxt6 \
     lsb-release \
+    moreutils \
     odbc-postgresql \
     protobuf-compiler \
     sudo \
