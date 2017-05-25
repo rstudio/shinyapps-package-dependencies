@@ -3,8 +3,10 @@
 set -x
 set -e
 
-apt-get update -qq
-apt-get install -y python-pip python-dev
+# Use latest version of pip in order to obtain binary packages instead of compiling numpy, etc.
+wget https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
+rm get-pip.py
 
 pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.1.0-cp27-none-linux_x86_64.whl
 pip install scipy h5py pyyaml requests Pillow
