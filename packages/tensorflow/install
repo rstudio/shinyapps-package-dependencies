@@ -4,7 +4,7 @@ set -x
 set -e
 
 # Use latest version of pip in order to obtain binary packages instead of compiling numpy, etc.
-wget https://bootstrap.pypa.io/get-pip.py
+curl -O https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 rm get-pip.py
 
