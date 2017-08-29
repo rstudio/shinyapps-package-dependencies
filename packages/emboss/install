@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -x
+set -e
+
+apt-get install -y emboss
+
+
+
