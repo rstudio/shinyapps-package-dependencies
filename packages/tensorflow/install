@@ -8,5 +8,5 @@ curl -O https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 rm get-pip.py
 
-pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.2.1-cp27-none-linux_x86_64.whl
+pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.3.0-cp27-none-linux_x86_64.whl
 pip install keras scipy h5py pyyaml requests Pillow
