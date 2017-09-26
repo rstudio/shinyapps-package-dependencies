@@ -4,7 +4,7 @@ set -e
 
 VERSION=2.4.2
 cd /tmp
-curl -O http://ab-initio.mit.edu/nlopt/nlopt-$VERSION.tar.gz
+curl -OL http://ab-initio.mit.edu/nlopt/nlopt-$VERSION.tar.gz
 tar -zxvf nlopt-$VERSION.tar.gz
 cd nlopt-$VERSION
 
