@@ -2,23 +2,23 @@
 set -x
 set -e
 
-OS_PLATFORM=$(lsb_release -cs)
+OS_DISTRIBUTION=$(lsb_release -cs)
 
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C7917B12
 
 function add_repo {
-    echo "deb http://ppa.launchpad.net/chris-lea/libsodium/ubuntu $OS_PLATFORM main" >> /etc/apt/sources.list.d/libsodium-ppa.list
+    echo "deb http://ppa.launchpad.net/chris-lea/libsodium/ubuntu $OS_DISTRIBUTION main" >> /etc/apt/sources.list.d/libsodium-ppa.list
 }
 
 # check for supported platform (whitelisted ubuntu versions)
-if [ $OS_PLATFORM == "precise" ]; then
+if [ $OS_DISTRIBUTION == "precise" ]; then
     add_repo
-elif [ $OS_PLATFORM == "trusty" ]; then
+elif [ $OS_DISTRIBUTION == "trusty" ]; then
     add_repo
-elif [ $OS_PLATFORM == "vivid" ]; then
+elif [ $OS_DISTRIBUTION == "vivid" ]; then
     add_repo
 else
-    echo "This platform is unsupported ($OS_PLATFORM) by the apt repository. Skipping"
+    echo "This platform is unsupported ($OS_DISTRIBUTION) by the apt repository. Skipping"
     test -f /etc/apt/sources.list.d/libsodium-ppa.list && rm /etc/apt/sources.list.d/libsodium-ppa.list
     exit 0
 fi
