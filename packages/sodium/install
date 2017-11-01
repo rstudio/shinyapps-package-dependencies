@@ -2,8 +2,27 @@
 set -x
 set -e
 
+OS_PLATFORM=$(lsb_release -cs)
+
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C7917B12
-echo "deb http://ppa.launchpad.net/chris-lea/libsodium/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/libsodium-ppa.list
+
+function add_repo {
+    echo "deb http://ppa.launchpad.net/chris-lea/libsodium/ubuntu $OS_PLATFORM main" >> /etc/apt/sources.list.d/libsodium-ppa.list
+}
+
+# check for supported platform (whitelisted ubuntu versions)
+if [ $OS_PLATFORM == "precise" ]; then
+    add_repo
+elif [ $OS_PLATFORM == "trusty" ]; then
+    add_repo
+elif [ $OS_PLATFORM == "vivid" ]; then
+    add_repo
+else
+    echo "This platform is unsupported ($OS_PLATFORM) by the apt repository. Skipping"
+    test -f /etc/apt/sources.list.d/libsodium-ppa.list && rm /etc/apt/sources.list.d/libsodium-ppa.list
+    exit 0
+fi
+
 
 apt-get update -qq
 apt-get install -y libsodium-dev
