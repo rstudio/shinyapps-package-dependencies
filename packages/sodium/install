@@ -4,23 +4,19 @@ set -e
 
 OS_DISTRIBUTION=$(lsb_release -cs)
 
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C7917B12
-
 function add_repo {
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C7917B12
     echo "deb http://ppa.launchpad.net/chris-lea/libsodium/ubuntu $OS_DISTRIBUTION main" >> /etc/apt/sources.list.d/libsodium-ppa.list
 }
 
 # check for supported platform (whitelisted ubuntu versions)
+# xenial does NOT need to add the ppa
 if [ $OS_DISTRIBUTION == "precise" ]; then
     add_repo
 elif [ $OS_DISTRIBUTION == "trusty" ]; then
     add_repo
 elif [ $OS_DISTRIBUTION == "vivid" ]; then
     add_repo
-else
-    echo "This platform is unsupported ($OS_DISTRIBUTION) by the apt repository. Skipping"
-    test -f /etc/apt/sources.list.d/libsodium-ppa.list && rm /etc/apt/sources.list.d/libsodium-ppa.list
-    exit 0
 fi
 
 
