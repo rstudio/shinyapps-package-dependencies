@@ -43,6 +43,6 @@ touch packages/<r_package_name>/test.R
 4. Test your install by running these commands:
 
 ```bash
-docker build -t rstudio/r .
-docker run --name shinyapps-package-dependencies -v $(pwd):/shinyapps --rm rstudio/r /shinyapps/test [r_package_name]
+make test-trusty-[r_package_name]
+make test-xenial-[r_package_name]
 ```
