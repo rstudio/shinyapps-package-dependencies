@@ -3,5 +3,9 @@ sudo: required
 services:
   - docker
 
+env:
+  - TEST_OS=trusty
+  - TEST_OS=xenial
+
 script:
-  - make test-all
+  - make test-all-$TEST_OS
