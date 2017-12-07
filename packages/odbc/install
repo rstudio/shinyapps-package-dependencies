@@ -4,7 +4,7 @@ set -x
 set -e
 
 # fetch install script
-wget https://drivers.rstudio.org/7C152C12/odbc-install.sh
+curl -O https://drivers.rstudio.org/7C152C12/odbc-install.sh
 chmod +x odbc-install.sh
 mkdir /opt/rstudio-drivers
 
