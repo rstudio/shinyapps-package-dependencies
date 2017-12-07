@@ -1,11 +1,14 @@
 #!/bin/bash
 
+set -x
+set -e
+
 # fetch install script
 wget https://drivers.rstudio.org/7C152C12/odbc-install.sh
 chmod +x odbc-install.sh
-mkdir /etc/rstudio-drivers
+mkdir /opt/rstudio-drivers
 
 # install & configure drivers
-./odbc-install.sh --install /etc/rstudio-drivers --eula
+./odbc-install.sh --install /opt/rstudio-drivers --eula
 
 # installing all by default so that updates happen automatically
