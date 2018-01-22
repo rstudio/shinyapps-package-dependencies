@@ -7,11 +7,12 @@ install.packages(
   repos = "https://cran.rstudio.com"
 )
 devtools::install_github(repo = "maxheld83/pensieve")
+
 library(pensieve)
-list.files()
+list.files(recursive = TRUE)
 path <- file.path("packages", "pensieve")
 file.exists(file.path(path, "test1.pdf"))  # this already fails
-withr::with_dir(new = path, code = {
+with_dir(new = path, code = {
   system2(command = "pdf2svg",
           args = c("test1.pdf", "test1.svg", "1"),
           stderr = "")
