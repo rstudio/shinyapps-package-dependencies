@@ -2,16 +2,23 @@
 # https://github.com/maxheld83/pensieve *does* use pdf2svg and will be on CRAN in future; this test should suffice though
 # more info on the pdf2svg utility at http://www.cityinthesky.co.uk/opensource/pdf2svg/
 # pdf2svg requires poppler and cairo, both of which are already listed as dependencies in shinyapps-package-dependencies
-install.packages("devtools", repos = "https://cran.rstudio.com")
+install.packages(
+  pkgs = c("devtools", "withr"),
+  repos = "https://cran.rstudio.com"
+)
 devtools::install_github(repo = "maxheld83/pensieve")
 library(pensieve)
-getwd()
-file.exists("test1.pdf")  # this already fails
-system2(command = "pdf2svg",
-        args = c("test1.pdf", "test1.svg", "1"),
-        stderr = "")
-if (file.exists("test1.svg")) {
-  file.remove("test1.svg")
-} else {
-  stop("No converted svg file found.")
-}
+list.files()
+path <- file.path("packages", "pensieve")
+file.exists(file.path(path, "test1.pdf"))  # this already fails
+with_dir(new = path, code = {
+  system2(command = "pdf2svg",
+          args = c("test1.pdf", "test1.svg", "1"),
+          stderr = "")
+  if (file.exists("test1.svg")) {
+    file.remove("test1.svg")
+  } else {
+    stop("No converted svg file found.")
+  }
+})
+
