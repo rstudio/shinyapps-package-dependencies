@@ -11,7 +11,7 @@ library(pensieve)
 list.files()
 path <- file.path("packages", "pensieve")
 file.exists(file.path(path, "test1.pdf"))  # this already fails
-with_dir(new = path, code = {
+withr::with_dir(new = path, code = {
   system2(command = "pdf2svg",
           args = c("test1.pdf", "test1.svg", "1"),
           stderr = "")
