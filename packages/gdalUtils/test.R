@@ -1,5 +1,5 @@
 options(download.file.method="curl")
-install.packages("rgdal", repos = "https://cran.rstudio.com")
+install.packages("gdalUtils", repos = "https://cran.rstudio.com")
 
 library("gdalUtils")
 
