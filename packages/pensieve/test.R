@@ -2,7 +2,7 @@
 # https://github.com/maxheld83/pensieve *does* use pdf2svg and will be on CRAN in future; this test should suffice though
 # more info on the pdf2svg utility at http://www.cityinthesky.co.uk/opensource/pdf2svg/
 # pdf2svg requires poppler and cairo, both of which are already listed as dependencies in shinyapps-package-dependencies
-install.packages(devtools)
+install.packages("devtools")
 devtools::install_github(repo = "maxheld83/pensieve")
 library(pensieve)
 getwd()
