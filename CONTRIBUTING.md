@@ -53,3 +53,6 @@ touch packages/<r_package_name>/test.R
 make test-trusty-[r_package_name]
 make test-xenial-[r_package_name]
 ```
+
+The RStudio Build process builds the *entire* `Makefile`, which may or may not work on your machine. 
+To pass the test, you only need to pass the above bash script, *not* the entire `Makefile`, so don't be confused by a "failing" RStudio build.
