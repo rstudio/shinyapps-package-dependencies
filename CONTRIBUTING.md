@@ -50,6 +50,5 @@ touch packages/<r_package_name>/test.R
 4. Test your install by running these commands:
 
 ```bash
-make test-trusty-[r_package_name]
-make test-xenial-[r_package_name]
+make test-[r_package_name]
 ```
