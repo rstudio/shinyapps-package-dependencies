@@ -2,12 +2,12 @@ FROM ubuntu:trusty
 MAINTAINER RStudio Docker <docker@rstudio.com>
 
 # add R apt repository
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list.d/cran-rstudio.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
+    echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list.d/cran-rstudio.list
 
 # add OpenJDK PPA
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 86F44E2A
-RUN echo "deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main" >> /etc/apt/sources.list.d/openjdk-ppa.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 86F44E2A && \
+    echo "deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main" >> /etc/apt/sources.list.d/openjdk-ppa.list
 
 # Set default locale
 RUN update-locale --reset LANG=C.UTF-8
@@ -53,10 +53,10 @@ RUN apt-get update -qq && \
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openjdk-8-jdk
 
-ENV R_VERSION 3.3.1
+ENV R_VERSION 3.4.1
 
 # Install R
-RUN apt-get install -y r-base-core=3.3.1-1trusty0 r-base-dev=3.3.1-1trusty0
+RUN apt-get install -y r-base-core=3.4.1-1trusty0 r-base-dev=3.4.1-1trusty0
 
 # set UTF-8
 RUN echo "LANG=C.UTF-8" >> /usr/lib/R/etc/Renviron.site
