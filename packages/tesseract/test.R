@@ -5,4 +5,3 @@ library("tesseract")
 
 text <- ocr("https://jeroen.github.io/images/testocr.png")
 nchar(text) == 287
-
