@@ -3,5 +3,4 @@ set -x
 set -e
 
 apt-get update -qq
-apt-get install -y pdf2svg
-apt-get install -y librsvg2-bin
+apt-get install -y pdf2svg librsvg2-bin
