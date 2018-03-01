@@ -2,5 +2,5 @@
 set -x
 set -e
 
-apt-get update
-apt-get install liblwgeom-dev
+sudo apt-get update
+sudo apt-get install libgdal-dev libgeos-dev libproj-dev libudunits2-dev liblwgeom-dev
