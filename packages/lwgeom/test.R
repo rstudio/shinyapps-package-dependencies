@@ -1,5 +1,5 @@
 # Install from CRAN
-install.packages("lwgeom", repos = "https://cran.rstudio.com")
+install.packages("lwgeom", type = "source")
 
 # Run example from the manual
 library(lwgeom)
