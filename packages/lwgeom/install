@@ -2,6 +2,5 @@
 set -x
 set -e
 
-add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 apt-get update
-apt-get install libgdal-dev libgeos-dev libproj-dev libudunits2-dev liblwgeom-dev
+apt-get install liblwgeom-dev
