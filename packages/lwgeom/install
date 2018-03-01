@@ -2,5 +2,10 @@
 set -x
 set -e
 
-sudo apt-get update
-sudo apt-get install libgdal-dev libgeos-dev libproj-dev libudunits2-dev liblwgeom-dev
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 314DF160
+echo "deb http://ppa.launchpad.net/ubuntugis/ppa/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/ubuntugis-ppa.list
+
+apt-get update -qq
+apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev liblwgeom-dev
+
+
