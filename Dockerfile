@@ -2,11 +2,11 @@ FROM ubuntu:trusty
 MAINTAINER RStudio Docker <docker@rstudio.com>
 
 # add R apt repository
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0x51716619e084dab9 && \
     echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list.d/cran-rstudio.list
 
 # add OpenJDK PPA
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 86F44E2A && \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0xEB9B1D8886F44E2A && \
     echo "deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main" >> /etc/apt/sources.list.d/openjdk-ppa.list
 
 # Set default locale

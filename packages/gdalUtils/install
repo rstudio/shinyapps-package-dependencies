@@ -2,7 +2,7 @@
 set -x
 set -e
 
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 314DF160
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0x089EBE08314DF160
 echo "deb http://ppa.launchpad.net/ubuntugis/ppa/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/ubuntugis-ppa.list
 
 apt-get update -qq
