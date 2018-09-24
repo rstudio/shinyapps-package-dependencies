@@ -5,16 +5,14 @@ set -e
 OS_DISTRIBUTION=$(lsb_release -cs)
 
 # need for add-apt-repository
-sudo apt-get install -y software-properties-common
+apt-get install -y software-properties-common
 
 # check for supported platform (whitelisted ubuntu versions)
 if [ $OS_DISTRIBUTION == "trusty" ]; then
-	sudo add-apt-repository ppa:mc3man/trusty-media
+	add-apt-repository ppa:mc3man/trusty-media
 # else 
-# 	sudo add-apt-repository ppa:jonathonf/ffmpeg-3
+# 	add-apt-repository ppa:jonathonf/ffmpeg-3
 fi
 
-sudo apt-get update -qq
-sudo apt-get -y dist-upgrade
-sudo apt-get update -qq
-sudo apt-get install -y ffmpeg graphicsmagick libav-tools pdftk x264 x265
+apt-get update -qq
+apt-get install -y ffmpeg graphicsmagick libav-tools pdftk x264 x265
