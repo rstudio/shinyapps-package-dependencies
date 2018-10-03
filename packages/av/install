@@ -6,13 +6,14 @@ OS_DISTRIBUTION=$(lsb_release -cs)
 
 # need for add-apt-repository
 apt-get install -y software-properties-common
+add-apt-repository ppa:jonathonf/ffmpeg-3 -y
+add-apt-repository ppa:jonathonf/ffmpeg-4 -y
 
 # check for supported platform (whitelisted ubuntu versions)
-if [ $OS_DISTRIBUTION == "trusty" ]; then
-	add-apt-repository ppa:mc3man/trusty-media
+# if [ $OS_DISTRIBUTION == "trusty" ]; then
 # else 
 # 	add-apt-repository ppa:jonathonf/ffmpeg-3
-fi
+# fi
 
 apt-get update -qq
-apt-get install -y ffmpeg libav-tools x264 x265 libfdk-aac-dev libavfilter-dev libavformat-dev
+apt-get install -y libavfilter-dev libavformat-dev
