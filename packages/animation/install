@@ -15,4 +15,4 @@ if [ $OS_DISTRIBUTION == "trusty" ]; then
 fi
 
 apt-get update -qq
-apt-get install -y ffmpeg graphicsmagick libav-tools pdftk x264 x265 libfdk-aac-dev
+apt-get install -y ffmpeg graphicsmagick libav-tools pdftk x264 x265
