@@ -5,10 +5,9 @@ set -e
 OS_DISTRIBUTION=$(lsb_release -cs)
 
 
-# check for supported platform (whitelisted ubuntu versions)
 if [ $OS_DISTRIBUTION == "trusty" || $OS_DISTRIBUTION == "xenial" ]; then
-	# need for add-apt-repository
 	apt-get update -qq
+	# need for add-apt-repository	
 	apt-get install -y software-properties-common
 	add-apt-repository ppa:jonathonf/ffmpeg-3 -y
 	add-apt-repository ppa:jonathonf/ffmpeg-4 -y
