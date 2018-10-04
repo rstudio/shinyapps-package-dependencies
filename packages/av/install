@@ -8,7 +8,7 @@ OS_DISTRIBUTION=$(lsb_release -cs)
 apt-get update -qq
 apt-get install -y software-properties-common
 
-if [ "$OS_DISTRIBUTION" == "trusty" || "$OS_DISTRIBUTION" == "xenial" ]; then
+if [ "$OS_DISTRIBUTION" == "trusty" ] || [ "$OS_DISTRIBUTION" == "xenial" ]; then
 	add-apt-repository -y ppa:jonathonf/ffmpeg-3 
 fi
 
