@@ -4,16 +4,15 @@ set -e
 
 OS_DISTRIBUTION=$(lsb_release -cs)
 
-# need for add-apt-repository
-apt-get install -y software-properties-common
-add-apt-repository ppa:jonathonf/ffmpeg-3 -y
-add-apt-repository ppa:jonathonf/ffmpeg-4 -y
 
 # check for supported platform (whitelisted ubuntu versions)
-# if [ $OS_DISTRIBUTION == "trusty" ]; then
-# else 
-# 	add-apt-repository ppa:jonathonf/ffmpeg-3
-# fi
+if [ $OS_DISTRIBUTION == "trusty" || $OS_DISTRIBUTION == "xenial" ]; then
+	# need for add-apt-repository
+	apt-get update -qq
+	apt-get install -y software-properties-common
+	add-apt-repository ppa:jonathonf/ffmpeg-3 -y
+	add-apt-repository ppa:jonathonf/ffmpeg-4 -y
+fi
 
 apt-get update -qq
 apt-get install -y libavfilter-dev libavformat-dev
