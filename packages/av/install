@@ -1,0 +1,18 @@
+#!/bin/bash
+set -x
+set -e
+
+OS_DISTRIBUTION=$(lsb_release -cs)
+
+# need for add-apt-repository	
+apt-get update -qq
+apt-get install -y software-properties-common
+
+if [ "$OS_DISTRIBUTION" == "trusty" ] || [ "$OS_DISTRIBUTION" == "xenial" ]; then
+	add-apt-repository -y ppa:jonathonf/ffmpeg-3 
+fi
+
+add-apt-repository -y ppa:jonathonf/ffmpeg-4
+
+apt-get update -qq
+apt-get install -y libavfilter-dev libavformat-dev
