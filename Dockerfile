@@ -47,6 +47,7 @@ RUN apt-get update -qq && \
     texlive-fonts-extra \
     texlive-latex-extra \
     texlive-xetex \
+    texlive-lang-portuguese \
     unixodbc \
     unixodbc-dev \
     wget
