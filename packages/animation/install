@@ -4,8 +4,14 @@ set -e
 
 OS_DISTRIBUTION=$(lsb_release -cs)
 
-# need for add-apt-repository
+apt-get update -qq
+
 apt-get install -y software-properties-common
+
+# Even though animation depends upon magick, the test framework doesn't run
+# the installers for imported packages, so we need to install libmagick++-dev
+# here as well.
+add-apt-repository -y ppa:opencpu/imagemagick
 
 # check for supported platform (whitelisted ubuntu versions)
 if [ $OS_DISTRIBUTION == "trusty" ]; then
@@ -15,4 +21,4 @@ if [ $OS_DISTRIBUTION == "trusty" ]; then
 fi
 
 apt-get update -qq
-apt-get install -y ffmpeg graphicsmagick libav-tools pdftk x264 x265
+apt-get install -y libmagick++-dev ffmpeg graphicsmagick libav-tools pdftk x264 x265
