@@ -4,8 +4,8 @@ services:
   - docker
 
 env:
-  - TEST_OS=trusty
   - TEST_OS=xenial
+  - TEST_OS=bionic
 
 script:
   - make test-all-$TEST_OS

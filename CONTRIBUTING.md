@@ -3,7 +3,8 @@ Contributing to this project
 
 Requirements
 ============
-This repo utilizes [Docker](https://www.docker.com/) to test the install scripts. Please make sure you [download](https://docs.docker.com/engine/installation/) the latest version of Docker before contributing to the project.
+This repo utilizes [Docker](https://www.docker.com/) to test the install scripts. Please make sure you
+[download](https://docs.docker.com/engine/installation/) the latest version of Docker before contributing to the project.
 
 Steps
 =====
@@ -17,17 +18,17 @@ Steps
 How to add system dependency support for an R package
 =====================================================
 
-1. Create a directory with the same name as the R package you are adding support for. The directory **MUST BE** case sensitive.
+1. Create a directory with the name as the R package you are adding support for. The directory **MUST BE** case sensitive.
 
 ```bash
-mkdir packages/<r_package_name>
+mkdir packages/[r_package_name]
 ```
 
 2. Create a bash script in the directory named `install` and give it executable permissions
 
 ```bash
-touch packages/<r_package_name>/install
-chmod 755 packages/<r_package_name>/install
+touch packages/[r_package_name]/install
+chmod 755 packages/[r_package_name]/install
 ```
 
 3. Write your install bash script to install all the dependencies of your R package.  Be sure to include the following:
@@ -42,7 +43,7 @@ set -e
 4. Create a `test.R` file in the same directory.
 
 ```bash
-touch packages/<r_package_name>/test.R
+touch packages/[r_package_name]/test.R
 ```
 
 5. Write this R script to install the R package and run some basic code to ensure that the package is installed correctly and functional.
@@ -50,6 +51,6 @@ touch packages/<r_package_name>/test.R
 4. Test your install by running these commands:
 
 ```bash
-make test-trusty-[r_package_name]
 make test-xenial-[r_package_name]
+make test-bionic-[r_package_name]
 ```
