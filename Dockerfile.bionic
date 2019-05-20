@@ -12,6 +12,7 @@ RUN apt-get update -qq && \
     libcurl4-openssl-dev \
     locales \
     lsb-release \
+    moreutils \
     openssh-client \
     protobuf-compiler \
     sudo && \
