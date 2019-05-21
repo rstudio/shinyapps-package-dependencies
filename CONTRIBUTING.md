@@ -18,7 +18,7 @@ Steps
 How to add system dependency support for an R package
 =====================================================
 
-1. Create a directory with the name as the R package you are adding support for. The directory **MUST BE** case sensitive.
+1. Create a directory with the same name as the R package you are adding support for. The directory **MUST BE** case sensitive.
 
 ```bash
 mkdir packages/[r_package_name]
