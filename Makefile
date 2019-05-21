@@ -1,19 +1,23 @@
 PACKAGE_DIRS := $(wildcard packages/*)
 PACKAGES := $(notdir ${PACKAGE_DIRS})
 PACKAGE_TESTS := $(PACKAGES:%=test-%)
-TRUSTY_DOCKER_IMAGE ?= "rstudio/docker-r:trusty-3.4.2"
-XENIAL_DOCKER_IMAGE ?= "rstudio/docker-r:xenial-3.4.2"
+R_VERSION := 3.5.3
 
-test-trusty-%:
-	docker run --name shinyapps-package-dependencies -v $(CURDIR):/shinyapps --rm $(TRUSTY_DOCKER_IMAGE) /shinyapps/test $*
+docker-build-%:
+	docker build -t spd:$* --build-arg R_VERSION=$(R_VERSION) -f Dockerfile.$* .
 
-test-xenial-%:
-	docker run --name shinyapps-package-dependencies -v $(CURDIR):/shinyapps --rm $(XENIAL_DOCKER_IMAGE) /shinyapps/test $*
+test-xenial-%: docker-build-xenial
+	docker run --rm --name spd-xenial-$* -v $(CURDIR):/shinyapps spd:xenial /shinyapps/test $*
 
-test-all-trusty:
-	docker run --name shinyapps-package-dependencies -v $(CURDIR):/shinyapps --rm $(TRUSTY_DOCKER_IMAGE) /shinyapps/test
+test-all-xenial: docker-build-xenial
+	docker run --rm --name spd-xenial -v $(CURDIR):/shinyapps spd:xenial /shinyapps/test
 
-test-all-xenial:
-	docker run --name shinyapps-package-dependencies -v $(CURDIR):/shinyapps --rm $(XENIAL_DOCKER_IMAGE) /shinyapps/test
+test-bionic-%: docker-build-bionic
+	docker run --rm --name spd-bionic-$* -v $(CURDIR):/shinyapps spd:bionic /shinyapps/test $*
 
-test-all: test-all-trusty test-all-xenial
+test-all-bionic: docker-build-bionic
+	docker run --rm --name spd-bionic -v $(CURDIR):/shinyapps spd:bionic /shinyapps/test
+
+test-all: test-all-bionic test-all-xenial
+
+.PHONY: test-all-xenial test-all-bionic
