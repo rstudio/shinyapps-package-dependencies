@@ -2,9 +2,16 @@
 set -x
 set -e
 
-# PPA has recent ImageMagick versions for for Ubuntu Trusty/Xenial
+OS_DISTRIBUTION=$(lsb_release -cs)
+
 apt-get update -qq
 apt-get install -y software-properties-common python-software-properties
-add-apt-repository -y ppa:opencpu/imagemagick
-apt-get update -qq
+
+# these sysdeps are available by default in bionic
+if [ ${OS_DISTRIBUTION} != "bionic" ]; then
+  # PPA has recent ImageMagick versions for for Ubuntu Trusty/Xenial
+  add-apt-repository -y ppa:opencpu/imagemagick
+  apt-get update -qq
+fi
+
 apt-get install -y libmagick++-dev

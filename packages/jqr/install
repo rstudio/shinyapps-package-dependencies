@@ -2,8 +2,15 @@
 set -x
 set -e
 
+OS_DISTRIBUTION=$(lsb_release -cs)
+
 apt-get update -qq
 apt-get install -y software-properties-common python-software-properties
-add-apt-repository -y ppa:opencpu/jq
-apt-get update -qq
+
+# these sysdeps are available by default in bionic
+if [ "${OS_DISTRIBUTION}" == "xenial" ] || [ "${OS_DISTRIBUTION}" == "trusty" ]; then
+  add-apt-repository -y ppa:opencpu/jq
+  apt-get update -qq
+fi
+
 apt-get install -y libjq-dev
