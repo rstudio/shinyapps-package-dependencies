@@ -7,6 +7,6 @@ OS_DISTRIBUTION=$(lsb_release -cs)
 apt-get update -qq
 apt-get install -y phantomjs
 
-if [[ ${OS_DISTRIBUTION} = "xenial" ]]; then
+if [[ ${OS_DISTRIBUTION} != "xenial" ]]; then
     apt-get install -y libssl-dev
 fi
