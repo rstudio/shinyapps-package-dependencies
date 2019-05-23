@@ -11,14 +11,12 @@ apt-get install -y software-properties-common
 # Even though animation depends upon magick, the test framework doesn't run
 # the installers for imported packages, so we need to install libmagick++-dev
 # here as well.
-add-apt-repository -y ppa:opencpu/imagemagick
-
-# check for supported platform (whitelisted ubuntu versions)
-if [ $OS_DISTRIBUTION == "trusty" ]; then
-	add-apt-repository ppa:mc3man/trusty-media
-# else 
-# 	add-apt-repository ppa:jonathonf/ffmpeg-3
+if [[ ${OS_DISTRIBUTION} == xenial ]]; then
+    add-apt-repository -y ppa:opencpu/imagemagick
+    ADDITIONAL_PACKAGES="libav-tools pdftk"
+elif [[ ${OS_DISTRIBUTION} == bionic ]]; then
+ 	add-apt-repository -y ppa:jonathonf/ffmpeg-4
 fi
 
 apt-get update -qq
-apt-get install -y libmagick++-dev ffmpeg graphicsmagick libav-tools pdftk x264 x265
+apt-get install -y libmagick++-dev ffmpeg graphicsmagick x264 x265 ${ADDITIONAL_PACKAGES}

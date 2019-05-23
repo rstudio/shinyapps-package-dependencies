@@ -28,16 +28,20 @@ animation::saveVideo({
 }, video.name = "BM.mp4", other.opts = "-pix_fmt yuv420p -b 300k -c:v libx265")
 
 
-pathPDFTK = system2('which',args = 'pdftk',stdout = TRUE)
-animation::ani.options(pdftk = pathPDFTK)
+pathPDFTK <- system2('which',args = 'pdftk',stdout = TRUE)
 
-pdf('plot.pdf')
-plot(rnorm(4))
-dev.off()
+# Skip testing pdftk if it cannot be found, e.g. on bionic where it is not easily available
+if (attr(pathPDFTK, "status") != 1) {
+    animation::ani.options(pdftk = pathPDFTK)
 
-animation::pdftk('plot.pdf', output = 'plot0.pdf')
-if (file.exists("plot0.pdf")) {
-    file.remove("plot0.pdf")
-} else {
-    stop("pdftk does not work")
+    pdf('plot.pdf')
+    plot(rnorm(4))
+    dev.off()
+
+    animation::pdftk('plot.pdf', output = 'plot0.pdf')
+    if (file.exists("plot0.pdf")) {
+        file.remove("plot0.pdf")
+    } else {
+        stop("pdftk does not work")
+    }
 }
