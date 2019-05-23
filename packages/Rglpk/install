@@ -2,5 +2,11 @@
 set -x
 set -e
 
+OS_DISTRIBUTION=$(lsb_release -cs)
+
 apt-get update -qq
 apt-get install -y libglpk-dev
+
+if [[ ${OS_DISTRIBUTION} != "xenial" ]]; then
+    apt-get install -y libgfortran-7-dev
+fi
