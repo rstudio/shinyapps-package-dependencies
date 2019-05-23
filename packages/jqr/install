@@ -5,10 +5,10 @@ set -e
 OS_DISTRIBUTION=$(lsb_release -cs)
 
 apt-get update -qq
-apt-get install -y software-properties-common python-software-properties
 
-# these sysdeps are available by default in bionic
-if [ "${OS_DISTRIBUTION}" == "xenial" ] || [ "${OS_DISTRIBUTION}" == "trusty" ]; then
+# this sysdep is available by default in bionic
+if [[ "${OS_DISTRIBUTION}" == "xenial" ]]; then
+  apt-get install -y software-properties-common python-software-properties
   add-apt-repository -y ppa:opencpu/jq
   apt-get update -qq
 fi
