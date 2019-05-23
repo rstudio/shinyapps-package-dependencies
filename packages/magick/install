@@ -9,7 +9,7 @@ apt-get update -qq
 # this sysdep is available by default in bionic
 if [[ ${OS_DISTRIBUTION} = "xenial" ]]; then
   apt-get install -y software-properties-common python-software-properties
-  # PPA has recent ImageMagick versions for for Ubuntu Xenial
+  # PPA has recent ImageMagick versions for Ubuntu Xenial
   add-apt-repository -y ppa:opencpu/imagemagick
   apt-get update -qq
 fi
