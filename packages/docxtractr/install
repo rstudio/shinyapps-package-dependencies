@@ -3,5 +3,6 @@
 set -x
 set -e
 
+add-apt-repository ppa:libreoffice/ppa
 apt-get update -qq
 apt-get install -y libreoffice
