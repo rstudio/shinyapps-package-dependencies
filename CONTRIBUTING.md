@@ -54,3 +54,29 @@ touch packages/[r_package_name]/test.R
 make test-xenial-[r_package_name]
 make test-bionic-[r_package_name]
 ```
+
+Example Code Setup
+==================
+Let's say the package you want to install is `av`.  Then in `bash`, you can set:
+
+```bash
+rpack=av
+```
+
+and then run the following code to set up the requirements as above.  These will need to be edited for your specific package and requirements.
+
+```bash
+git checkout master
+git branch add_package_${rpack}_support
+git checkout add_package_${rpack}_support
+mkdir packages/${rpack}
+touch packages/${rpack}/install
+echo "#!/bin/bash" > packages/${rpack}/install
+echo "" >> packages/${rpack}/install
+echo "set -x" >> packages/${rpack}/install
+echo "set -e" >> packages/${rpack}/install
+chmod 755 packages/packages/${rpack}/install
+touch packages/${rpack}/test.R
+echo "options(download.file.method='curl')" > packages/${rpack}/test.R
+echo "install.packages('"${rpack}"', repos='https://cran.rstudio.com')" >> packages/${rpack}/test.R
+```
