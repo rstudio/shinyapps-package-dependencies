@@ -4,4 +4,4 @@ set -x
 set -e
 
 apt-get update -qq
-apt-get install -y libssh-dev 
+apt-get install -y libssh-dev
