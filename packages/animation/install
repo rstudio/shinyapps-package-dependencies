@@ -16,8 +16,8 @@ add-apt-repository -y ppa:opencpu/imagemagick
 # check for supported platform (whitelisted ubuntu versions)
 if [ $OS_DISTRIBUTION == "trusty" ]; then
 	add-apt-repository ppa:mc3man/trusty-media
-# else 
-# 	add-apt-repository ppa:jonathonf/ffmpeg-3
+else 
+	add-apt-repository ppa:jonathonf/ffmpeg-4
 fi
 
 apt-get update -qq
