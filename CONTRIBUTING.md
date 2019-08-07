@@ -69,13 +69,13 @@ and then run the following code to set up the requirements as above.  These will
 git checkout master
 git branch add_package_${rpack}_support
 git checkout add_package_${rpack}_support
-mkdir packages/${rpack}
+mkdir -p packages/${rpack}
 touch packages/${rpack}/install
-echo "#!/bin/bash" > packages/${rpack}/install
+echo '#!/bin/bash' > packages/${rpack}/install
 echo "" >> packages/${rpack}/install
-echo "set -x" >> packages/${rpack}/install
-echo "set -e" >> packages/${rpack}/install
-chmod 755 packages/packages/${rpack}/install
+echo 'set -x' >> packages/${rpack}/install
+echo 'set -e' >> packages/${rpack}/install
+chmod 755 packages/${rpack}/install
 touch packages/${rpack}/test.R
 echo "options(download.file.method='curl')" > packages/${rpack}/test.R
 echo "install.packages('"${rpack}"', repos='https://cran.rstudio.com')" >> packages/${rpack}/test.R
