@@ -4,7 +4,7 @@ install.packages("pagedown", repos = "https://cran.rstudio.com", type = "source"
 # Test against Chromium installation
 pagedown::find_chrome()
 
-# Functional test
+# Functional test (Pandoc is required)
 source_file <- system.file(
   "rmarkdown/templates/html-paged/skeleton/skeleton.Rmd",
   package = "pagedown",

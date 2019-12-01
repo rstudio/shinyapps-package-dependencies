@@ -3,13 +3,13 @@
 set -x
 set -e
 
-# tests have failed without Pandoc
+# the functional test has failed without Pandoc
 # pagedown requires Pandoc >= 2.2.3
 wget https://github.com/jgm/pandoc/releases/download/2.2.3.1/pandoc-2.2.3.1-1-amd64.deb
 dpkg -i pandoc-2.2.3.1-1-amd64.deb
 rm pandoc-2.2.3.1-1-amd64.deb
 
-# install libssl-dev for the websocket package
+# install libssl-dev for the websocket package. This is required for the bionic image (this wasn't necessary for xenial)
 # install chromium to use pagedown::chrome_print()
 apt-get update -qq
 apt-get install -y \
