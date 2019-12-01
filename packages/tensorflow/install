@@ -8,5 +8,7 @@ curl -O https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 rm get-pip.py
 
-pip install --upgrade tensorflow keras scipy h5py pyyaml requests Pillow
+# Use latest version of setuptools
+pip install --upgrade setuptools
 
+pip install --upgrade tensorflow keras scipy h5py pyyaml requests Pillow
