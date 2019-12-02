@@ -3,7 +3,7 @@ PACKAGES := $(notdir ${PACKAGE_DIRS})
 PACKAGE_TESTS := $(PACKAGES:%=test-%)
 R_VERSION := 3.5.3
 
-# Docker image is build on Docker Hub https://hub.docker.com/repository/docker/rstudio/shinyapps-package-dependencies/
+# Docker image is built on Docker Hub https://hub.docker.com/repository/docker/rstudio/shinyapps-package-dependencies/
 docker-build-%:
 	docker build -t rstudio/shinyapps-package-dependencies:$* --build-arg R_VERSION=$(R_VERSION) -f Dockerfile.$* .
 
