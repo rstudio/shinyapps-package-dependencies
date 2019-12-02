@@ -11,7 +11,7 @@ apt-get install -y software-properties-common
 # Even though animation depends upon magick, the test framework doesn't run
 # the installers for imported packages, so we need to install libmagick++-dev
 # here as well.
-add-apt-repository -y ppa:opencpu/imagemagick
+add-apt-repository -y ppa:cran/imagemagick
 
 # check for supported platform (whitelisted ubuntu versions)
 if [ $OS_DISTRIBUTION == "trusty" ]; then

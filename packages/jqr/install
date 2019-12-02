@@ -9,7 +9,7 @@ apt-get install -y software-properties-common python-software-properties
 
 # these sysdeps are available by default in bionic
 if [ "${OS_DISTRIBUTION}" == "xenial" ] || [ "${OS_DISTRIBUTION}" == "trusty" ]; then
-  add-apt-repository -y ppa:opencpu/jq
+  add-apt-repository -y ppa:cran/jq
   apt-get update -qq
 fi
 
