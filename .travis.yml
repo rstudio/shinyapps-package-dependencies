@@ -4,6 +4,8 @@ services:
   - docker
 
 env:
+  global:
+    - MAKEFLAGS="-j 2"
   - TEST_OS=xenial
 #  - TEST_OS=bionic
 
