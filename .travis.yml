@@ -9,5 +9,8 @@ env:
   - TEST_OS=xenial
 #  - TEST_OS=bionic
 
+before_install:
+  - docker pull rstudio/shinyapps-package-dependencies
+
 script:
   - make test-all-$TEST_OS
