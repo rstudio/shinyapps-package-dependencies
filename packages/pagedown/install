@@ -11,10 +11,5 @@ rm pandoc-2.2.3.1-1-amd64.deb
 
 apt-get update -qq
 
-# install libssl-dev for the websocket package. No need for xenial.
-if [ $(lsb_release -cs) == "bionic" ] ; then
-  apt-get install -y libssl-dev
-fi
-
 # install chromium to use pagedown::chrome_print()
 apt-get install -y chromium-browser

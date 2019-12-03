@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -x
+set -e
+
+# install libssl-dev for bionic image. No need for xenial.
+if [ $(lsb_release -cs) == "bionic" ] ; then
+  apt-get update -qq
+  apt-get install -y libssl-dev
+fi
