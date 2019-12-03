@@ -10,7 +10,7 @@ apt-get update -qq
 if [[ ${OS_DISTRIBUTION} = "xenial" ]]; then
   apt-get install -y software-properties-common python-software-properties
   # PPA has recent ImageMagick versions for Ubuntu Xenial
-  add-apt-repository -y ppa:opencpu/imagemagick
+  add-apt-repository -y ppa:cran/imagemagick
   apt-get update -qq
 fi
 

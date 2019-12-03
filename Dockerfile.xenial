@@ -55,13 +55,13 @@ RUN apt-get update -qq && \
 
 # Note: myodbc is not available for Xenial: https://launchpad.net/myodbc
 RUN cd /tmp && \
-    wget -q https://cdn.mysql.com/Downloads/Connector-ODBC/5.3/mysql-connector-odbc-5.3.11-linux-ubuntu16.04-x86-64bit.tar.gz && \
-    tar zxf mysql-connector-odbc-5.3.11-linux-ubuntu16.04-x86-64bit.tar.gz && \
-    cp mysql-connector-odbc-5.3.11-linux-ubuntu16.04-x86-64bit/bin/* /usr/local/bin && \
-    cp mysql-connector-odbc-5.3.11-linux-ubuntu16.04-x86-64bit/lib/* /usr/local/lib && \
-    myodbc-installer -a -d -n "MySQL" -t "Driver=/usr/local/lib/libmyodbc5w.so" && \
-    myodbc-installer -a -d -n "MySQL ODBC 5.3 Driver" -t "Driver=/usr/local/lib/libmyodbc5w.so" && \
-    rm -rf mysql-connector-odbc-5.3.11-linux-ubuntu16.04-x86-64bit*
+    wget -q https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.17-linux-ubuntu16.04-x86-64bit.tar.gz && \
+    tar zxf mysql-connector-odbc-8.0.17-linux-ubuntu16.04-x86-64bit.tar.gz && \
+    cp mysql-connector-odbc-8.0.17-linux-ubuntu16.04-x86-64bit/bin/* /usr/local/bin && \
+    cp mysql-connector-odbc-8.0.17-linux-ubuntu16.04-x86-64bit/lib/* /usr/local/lib && \
+    myodbc-installer -a -d -n "MySQL" -t "Driver=/usr/local/lib/libmyodbc8w.so" && \
+    myodbc-installer -a -d -n "MySQL ODBC 8.0 Driver" -t "Driver=/usr/local/lib/libmyodbc8w.so" && \
+    rm -rf mysql-connector-odbc-8.0.17-linux-ubuntu16.04-x86-64bit*
 
 # Install JDK and Cargo separately to avoid the recommended packages
 RUN apt-get update -qq && \
@@ -129,6 +129,10 @@ RUN apt-get update -qq && \
     texlive-pstricks \
     texlive-xetex && \
     rm -rf /var/lib/apt/lists/*
+
+RUN wget https://github.com/jgm/pandoc/releases/download/2.3.1/pandoc-2.3.1-1-amd64.deb && \
+    dpkg -i pandoc-2.3.1-1-amd64.deb && \
+    rm pandoc-2.3.1-1-amd64.deb
 
 # Set default locale
 RUN update-locale --reset LANG=C.UTF-8

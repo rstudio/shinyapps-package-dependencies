@@ -12,7 +12,7 @@ apt-get install -y software-properties-common
 # the installers for imported packages, so we need to install libmagick++-dev
 # here as well.
 if [[ ${OS_DISTRIBUTION} == xenial ]]; then
-    add-apt-repository -y ppa:opencpu/imagemagick
+    add-apt-repository -y ppa:cran/imagemagick
     ADDITIONAL_PACKAGES="libav-tools pdftk"
 elif [[ ${OS_DISTRIBUTION} == bionic ]]; then
  	add-apt-repository -y ppa:jonathonf/ffmpeg-4
