@@ -10,7 +10,7 @@ apt-get install -y software-properties-common python-software-properties
 # these sysdeps are available by default in bionic
 if [ ${OS_DISTRIBUTION} != "bionic" ]; then
   # PPA has recent ImageMagick versions for for Ubuntu Trusty/Xenial
-  add-apt-repository -y ppa:opencpu/imagemagick
+  add-apt-repository -y ppa:cran/imagemagick
   apt-get update -qq
 fi
 
