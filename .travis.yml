@@ -1,4 +1,5 @@
-sudo: required
+language: shell
+os: linux
 
 services:
   - docker
@@ -6,8 +7,9 @@ services:
 env:
   global:
     - MAKEFLAGS="-j 2"
-  - TEST_OS=xenial
-#  - TEST_OS=bionic
+  jobs:
+    - TEST_OS=xenial
+#    - TEST_OS=bionic
 
 before_install:
   - docker pull rstudio/shinyapps-package-dependencies
