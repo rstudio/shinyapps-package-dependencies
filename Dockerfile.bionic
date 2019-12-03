@@ -130,6 +130,10 @@ RUN apt-get update -qq && \
     texlive-xetex && \
     rm -rf /var/lib/apt/lists/*
 
+RUN wget https://github.com/jgm/pandoc/releases/download/2.3.1/pandoc-2.3.1-1-amd64.deb && \
+    dpkg -i pandoc-2.3.1-1-amd64.deb && \
+    rm pandoc-2.3.1-1-amd64.deb
+
 # Set default locale
 RUN update-locale --reset LANG=C.UTF-8
 
