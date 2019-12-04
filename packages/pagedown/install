@@ -3,12 +3,6 @@
 set -x
 set -e
 
-# the functional test has failed without Pandoc
-# pagedown requires Pandoc >= 2.2.3
-wget https://github.com/jgm/pandoc/releases/download/2.2.3.1/pandoc-2.2.3.1-1-amd64.deb
-dpkg -i pandoc-2.2.3.1-1-amd64.deb
-rm pandoc-2.2.3.1-1-amd64.deb
-
 apt-get update -qq
 
 # install chromium to use pagedown::chrome_print()
