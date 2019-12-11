@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -x
+set -e
+
+apt-get update -qq
+
+# install chromium to use pagedown::chrome_print()
+apt-get install -y chromium-browser
