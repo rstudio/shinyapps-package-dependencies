@@ -1,7 +1,3 @@
-make test-xenial-rms
-make test-bionic-rms
-
-
 options(download.file.method="curl")
 install.packages(c("rms"), repos="https://cran.rstudio.com")
 library(rms)
