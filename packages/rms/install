@@ -1,0 +1,7 @@
+touch packages/rms/install
+chmod 755 packages/rms/install
+
+#!/bin/bash
+
+set -x
+set -e
