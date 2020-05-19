@@ -1,7 +1,7 @@
 PACKAGE_DIRS := $(wildcard packages/*)
 PACKAGES := $(notdir ${PACKAGE_DIRS})
 PACKAGE_TESTS := $(PACKAGES:%=test-%)
-R_VERSION := 3.5.3
+R_VERSION := 3.6.3
 
 # Docker image is built on Docker Hub https://hub.docker.com/repository/docker/rstudio/shinyapps-package-dependencies/
 docker-build-%:
