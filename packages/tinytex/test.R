@@ -1,6 +1,8 @@
 options(download.file.method = "curl")
 install.packages("tinytex", repos = "https://cran.rstudio.com")
 tinytex::install_tinytex()
+tinytex::tlmgr_install(c("svg", "koma-script", "trimspaces", "ifplatform", "catchfile", "transparent", "fp", "ms", "pgf"))
+tinytex::tlmgr_update()
 tex_document <- "
 \\documentclass{article}
 \\usepackage[inkscapearea=page]{svg}
