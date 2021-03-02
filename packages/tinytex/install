@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -x
+set -e
+
+apt-get update -qq
+
+# install inkscape to use includesvg of LaTeX's svg package
+apt-get install -y inkscape dvipng ghostscript texinfo libv8-3.14-dev chromium-browser language-pack-de xzdec libmagick++-dev tidy
+
+
+
+
+
+
