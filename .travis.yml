@@ -5,7 +5,7 @@ services:
 
 env:
   - TEST_OS=xenial
-#  - TEST_OS=bionic
+  - TEST_OS=focal
 
 script:
   - make test-all-$TEST_OS

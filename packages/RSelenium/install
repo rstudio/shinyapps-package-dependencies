@@ -2,11 +2,5 @@
 set -x
 set -e
 
-OS_DISTRIBUTION=$(lsb_release -cs)
-
 apt-get update -qq
 apt-get install -y libssl-dev phantomjs
-
-if [[ ${OS_DISTRIBUTION} != "bionic" ]]; then
-    apt-get install -y libssl-dev
-fi

@@ -1,7 +1,13 @@
 #!/bin/bash
-
 set -x
 set -e
 
+OS_DISTRIBUTION=$(lsb_release -cs)
+
 apt-get update -qq
-apt-get install -y python-dev
+
+if [ $OS_DISTRIBUTION == "xenial" ]; then
+  apt-get install -y python-dev
+else
+  apt-get install -y python3-dev
+fi

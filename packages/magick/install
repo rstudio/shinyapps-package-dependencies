@@ -5,10 +5,11 @@ set -e
 OS_DISTRIBUTION=$(lsb_release -cs)
 
 apt-get update -qq
-apt-get install -y software-properties-common python-software-properties
+apt-get install -y software-properties-common
 
 # these sysdeps are available by default in bionic
-if [ ${OS_DISTRIBUTION} != "bionic" ]; then
+if [ ${OS_DISTRIBUTION} == "xenial" ]; then
+  apt-get install -y python-software-properties
   # PPA has recent ImageMagick versions for for Ubuntu Trusty/Xenial
   add-apt-repository -y ppa:cran/imagemagick
   apt-get update -qq
