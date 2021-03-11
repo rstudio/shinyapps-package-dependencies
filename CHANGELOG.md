@@ -1,3 +1,8 @@
+## March 11th 2021
+
+## ADDED
+* `textshaping` added support for harfbuzz
+
 ## March 10th 2021
 
 ### UPDATED
