@@ -1,7 +1,7 @@
 ## March 12th 2021
 
 ### UPDATED
-* Updated all many packages to support focal as a base OS
+* Updated many packages to support focal as a base OS
     * `docxtractr` has a bug that causes it to not work in focal, opened an issue: https://github.com/rstudio/shinyapps-package-dependencies/issues/282
 
 ## March 11th 2021

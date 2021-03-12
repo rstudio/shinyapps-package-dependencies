@@ -2,5 +2,12 @@
 set -x
 set -e
 
+OS_DISTRIBUTION=$(lsb_release -cs)
+
 apt-get update -qq
-apt-get install -y libgmp-dev
+
+if [ ${OS_DISTRIBUTION} == "xenial" ]; then
+  apt-get install -y libgmp10-dev
+else
+  apt-get install -y libgmp-dev
+fi
