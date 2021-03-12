@@ -5,12 +5,13 @@ set -e
 OS_DISTRIBUTION=$(lsb_release -cs)
 
 apt-get update -qq
-apt-get install -y software-properties-common python-software-properties
+apt-get install -y software-properties-common
 
 # these sysdeps are available by default in bionic
 if [ "${OS_DISTRIBUTION}" == "xenial" ] || [ "${OS_DISTRIBUTION}" == "trusty" ]; then
   add-apt-repository -y ppa:cran/jq
   apt-get update -qq
+  apt-get install -y python-software-properties
 fi
 
 apt-get install -y libjq-dev
