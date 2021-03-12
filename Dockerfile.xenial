@@ -137,7 +137,7 @@ RUN wget https://github.com/jgm/pandoc/releases/download/2.3.1/pandoc-2.3.1-1-am
 # Set default locale
 RUN update-locale --reset LANG=C.UTF-8
 
-ARG R_VERSION=3.6.3
+ARG R_VERSION=4.0.4
 
 # Install R
 RUN wget -q https://cdn.rstudio.com/r/ubuntu-1604/R-${R_VERSION}-ubuntu-1604.tar.gz -O /tmp/R-${R_VERSION}.tar.gz && \
