@@ -2,5 +2,14 @@
 set -x
 set -e
 
-apt-get update -qq
-apt-get install -y libopenbabel-dev
+OS_DISTRIBUTION=$(lsb_release -cs)
+
+if [ "${OS_DISTRIBUTION}" == "focal" ]; then
+  echo "deb-src http://archive.ubuntu.com/ubuntu/ focal universe" >> /etc/apt/sources.list
+  echo "deb-src http://archive.ubuntu.com/ubuntu/ focal-updates universe" >> /etc/apt/sources.list
+  apt-get update -qq
+  apt-get install -y libopenbabel-dev libeigen3-dev
+else
+  apt-get update -qq
+  apt-get install -y libopenbabel-dev
+fi
