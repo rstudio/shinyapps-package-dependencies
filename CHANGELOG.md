@@ -1,3 +1,8 @@
+## March 12th 2021
+
+## UPDATED
+* Updated all packages to support focal as a base OS
+
 ## March 10th 2021
 
 ### UPDATED
