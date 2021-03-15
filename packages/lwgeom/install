@@ -2,9 +2,9 @@
 set -x
 set -e
 
-OS_DISTRIBUTION=$(lsb_release -cs)
+OS_CODENAME=$(lsb_release -cs)
 
-if [ $OS_DISTRIBUTION == "xenial" ]; then
+if [ $OS_CODENAME == "xenial" ]; then
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0x089EBE08314DF160
   echo "deb http://ppa.launchpad.net/ubuntugis/ppa/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/ubuntugis-ppa.list
 fi

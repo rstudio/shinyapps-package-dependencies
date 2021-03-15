@@ -2,9 +2,9 @@
 set -x
 set -e
 
-OS_DISTRIBUTION=$(lsb_release -cs)
+OS_CODENAME=$(lsb_release -cs)
 
-if [ "${OS_DISTRIBUTION}" == "focal" ]; then
+if [ "${OS_CODENAME}" == "focal" ]; then
   echo "deb-src http://archive.ubuntu.com/ubuntu/ focal universe" >> /etc/apt/sources.list
   echo "deb-src http://archive.ubuntu.com/ubuntu/ focal-updates universe" >> /etc/apt/sources.list
   apt-get update -qq

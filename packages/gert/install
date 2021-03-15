@@ -2,10 +2,10 @@
 set -x
 set -e
 
-OS_DISTRIBUTION=$(lsb_release -cs)
+OS_CODENAME=$(lsb_release -cs)
 
 # install libgit2 on xenial only
-if [ "${OS_DISTRIBUTION}" == "xenial" ]; then
+if [ "${OS_CODENAME}" == "xenial" ]; then
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0xb3cf35c315b55a9f
   echo "deb http://ppa.launchpad.net/cran/libgit2/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list.d/cran-libgit2-ppa.list
 fi

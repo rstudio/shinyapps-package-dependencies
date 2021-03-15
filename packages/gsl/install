@@ -2,11 +2,11 @@
 set -x
 set -e
 
-OS_DISTRIBUTION=$(lsb_release -cs)
+OS_CODENAME=$(lsb_release -cs)
 
 apt-get update -qq
 
-if [ ${OS_DISTRIBUTION} == "xenial" ]; then
+if [ ${OS_CODENAME} == "xenial" ]; then
   apt-get install -y libgsl0-dev
 else
   apt-get install -y libgsl-dev

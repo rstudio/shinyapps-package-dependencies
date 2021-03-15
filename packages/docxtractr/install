@@ -2,8 +2,8 @@
 set -x
 set -e
 
-OS_DISTRIBUTION=$(lsb_release -cs)
-if [ "${OS_DISTRIBUTION}" == "focal" ]; then
+OS_CODENAME=$(lsb_release -cs)
+if [ "${OS_CODENAME}" == "focal" ]; then
   echo "docxtractr is not supported on Ubuntu 20.04 due to: https://github.com/rstudio/shinyapps-package-dependencies/issues/282"
 else
   apt-get update -qq
