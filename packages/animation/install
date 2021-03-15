@@ -12,14 +12,12 @@ apt-get install -y software-properties-common
 # the installers for imported packages, so we need to install libmagick++-dev
 # here as well.
 
-if [[ $OS_DISTRIBUTION == "xenial" || $OS_DISTRIBUTION == "trusty" ]]; then
+if [ $OS_DISTRIBUTION == "xenial" ]; then
   add-apt-repository -y ppa:cran/imagemagick
 fi
 
 # check for supported platform (whitelisted ubuntu versions)
-if [ $OS_DISTRIBUTION == "trusty" ]; then
-	add-apt-repository ppa:mc3man/trusty-media
-elif [ $OS_DISTRIBUTION == "xenial" ]; then
+if [ $OS_DISTRIBUTION == "xenial" ]; then
 	add-apt-repository ppa:jonathonf/ffmpeg-4
 fi
 
