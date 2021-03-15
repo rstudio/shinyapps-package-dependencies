@@ -2,7 +2,7 @@
 set -x
 set -e
 
-OS_DISTRIBUTION=$(lsb_release -cs)
+OS_CODENAME=$(lsb_release -cs)
 
 apt-get update -qq
 
@@ -11,14 +11,20 @@ apt-get install -y software-properties-common
 # Even though animation depends upon magick, the test framework doesn't run
 # the installers for imported packages, so we need to install libmagick++-dev
 # here as well.
-add-apt-repository -y ppa:cran/imagemagick
+
+if [ $OS_CODENAME == "xenial" ]; then
+  add-apt-repository -y ppa:cran/imagemagick
+fi
 
 # check for supported platform (whitelisted ubuntu versions)
-if [ $OS_DISTRIBUTION == "trusty" ]; then
-	add-apt-repository ppa:mc3man/trusty-media
-else 
+if [ $OS_CODENAME == "xenial" ]; then
 	add-apt-repository ppa:jonathonf/ffmpeg-4
 fi
 
 apt-get update -qq
-apt-get install -y libmagick++-dev ffmpeg graphicsmagick libav-tools pdftk x264 x265
+
+if [ $OS_CODENAME == "focal" ]; then
+  apt-get install -y libmagick++-dev ffmpeg graphicsmagick pdftk x264 x265
+else
+  apt-get install -y libmagick++-dev ffmpeg graphicsmagick libav-tools pdftk x264 x265
+fi

@@ -2,11 +2,16 @@
 set -x
 set -e
 
+OS_CODENAME=$(lsb_release -cs)
+
 # need for add-apt-repository
 apt-get update -qq
 apt-get install -y software-properties-common
 
-add-apt-repository -y ppa:jonathonf/ffmpeg-4
+# check for supported platform (whitelisted ubuntu versions)
+if [ $OS_CODENAME == "xenial" ]; then
+	add-apt-repository ppa:jonathonf/ffmpeg-4
+fi
 
 apt-get update -qq
 apt-get install -y libavfilter-dev libavformat-dev
