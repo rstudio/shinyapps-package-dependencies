@@ -1,0 +1,58 @@
+on:
+  push:
+    branches:
+    - master
+    - pak
+  pull_request:
+    branches:
+    - master
+
+name: Test packages
+
+jobs:
+  packages:
+    runs-on: ubuntu-latest
+    outputs:
+      pkg_names: ${{ steps.set_pkg_names.outputs.pkg_names }}
+    steps:
+    - uses: actions/checkout@v2
+    - id: set_pkg_names
+      # https://stackoverflow.com/a/32354503/591574
+      run: |
+        PKGS=`ls packages | jq -R '[.]' | jq -s -c 'add'`
+        echo "::set-output name=pkg_names::$PKGS"
+    - name: debug
+      run: |
+        echo "${{ steps.set_pkg_names.outputs.pkg_names }}"
+
+  test:
+    runs-on: ubuntu-latest
+
+    name: ${{ matrix.pkg }} - ${{ matrix.docker_type }}
+
+    needs:
+    - packages
+    strategy:
+      fail-fast: false
+
+      # Test using independent docker containers
+      # Isolated testing so that a prior package doesn't "help" another package
+      matrix:
+        # Dynamic pkg names from the `./packages` folder
+        # https://github.blog/changelog/2020-04-15-github-actions-new-workflow-features/
+        pkg: ${{ fromJson(needs.packages.outputs.pkg_names) }}
+        docker_type:
+        - focal
+        - xenial
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build docker image
+        run: |
+          make docker-build-${{ matrix.docker_type }}
+
+      # Use dockerhub image
+      - name: "Test package: ${{ matrix.pkg }}"
+        run: |
+          make test-${{ matrix.docker_type }}-${{ matrix.pkg }}

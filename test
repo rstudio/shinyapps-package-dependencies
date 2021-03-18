@@ -14,6 +14,10 @@ color_text () {
   echo -e -n "\033[0m" # clear the color
 }
 
+echo " ***** SETUP..." | purple
+# make sure apt-get is up to date
+apt-get update -qq
+
 # install ts command (used later in this script)
 apt-get install -qq -y moreutils
 
@@ -25,34 +29,38 @@ else
     PACKAGES=$@
 fi
 
+# install pak if it doesn't already exist
+echo " ***** INSTALL PAK..." | purple
+Rscript "$DIR/pak/setup.R" | ts
+
 for PACKAGE in $PACKAGES; do
 
     PACKAGE_DIR=$DIR/packages/$PACKAGE
 
+    echo " ***** PACKAGE $PACKAGE" | purple
+
+    echo " ***** INSTALLING $PACKAGE..." | purple
     if [ -f $PACKAGE_DIR/install ]; then
-        echo " ***** PACKAGE $PACKAGE" | purple
-
-        echo " ***** INSTALLING..." | purple
         bash $PACKAGE_DIR/install | ts
-
-        echo " ***** TESTING..." | purple
-        if [ -f $PACKAGE_DIR/test.R ]; then
-            sudo R --verbose -f $PACKAGE_DIR/test.R
-        else
-            sudo R -e "install.packages('$PACKAGE', repos='http://cran.rstudio.com/'); library('$PACKAGE')"
-        fi
-
-        return_code=$?
-        if [[ $return_code != 0 ]] ; then
-            echo "$PACKAGE... FAILED" | red
-            exit $return_code
-        else
-            echo "$PACKAGE... SUCCESS" | green
-        fi
     else
-        echo "Unable to find '$PACKAGE' in $DIR/packages, exiting..." | red
-        exit 1
+        Rscript "$DIR/pak/install_sys_reqs.R" $PACKAGE | ts
     fi
+
+    echo " ***** TESTING $PACKAGE..." | purple
+    if [ -f $PACKAGE_DIR/test.R ]; then
+        sudo R --verbose -f $PACKAGE_DIR/test.R
+    else
+        sudo R -e "install.packages('$PACKAGE', repos='http://cran.rstudio.com/'); library('$PACKAGE')"
+    fi
+
+    return_code=$?
+    if [[ $return_code != 0 ]] ; then
+        echo "$PACKAGE... FAILED" | red
+        exit $return_code
+    else
+        echo "$PACKAGE... SUCCESS" | green
+    fi
+
 done
 
 exit 0

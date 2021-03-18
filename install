@@ -18,23 +18,33 @@ DIR=`dirname $0`
 
 PACKAGES=$@
 
+echo " ***** SETUP..." | purple
+# make sure apt-get is up to date
+apt-get update -qq
+
+# install pak if it doesn't already exist
+echo " ***** INSTALL PAK..." | purple
+Rscript "$DIR/pak/setup.R"
+
 for PACKAGE in $PACKAGES; do
 
     PACKAGE_DIR=$DIR/packages/$PACKAGE
 
+    echo " ***** PACKAGE $PACKAGE" | purple
+
+    echo " ***** INSTALLING..." | purple
     if [ -f $PACKAGE_DIR/install ]; then
-        echo " ***** PACKAGE $PACKAGE" | purple
-
-        echo " ***** INSTALLING..." | purple
         bash $PACKAGE_DIR/install
+    else
+        Rscript "$DIR/pak/install_sys_reqs.R" $PACKAGE
+    fi
 
-        return_code=$?
-        if [[ $return_code != 0 ]] ; then
-            echo "$PACKAGE... FAILED" | red
-            exit $return_code
-        else
-            echo "$PACKAGE... SUCCESS" | green
-        fi
+    return_code=$?
+    if [[ $return_code != 0 ]] ; then
+        echo "$PACKAGE... FAILED" | red
+        exit $return_code
+    else
+        echo "$PACKAGE... SUCCESS" | green
     fi
 done
 
