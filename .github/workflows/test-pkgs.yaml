@@ -1,0 +1,56 @@
+on:
+  push:
+    branches:
+      - main
+      - master
+      - ghactions
+  pull_request:
+    branches:
+      - main
+      - master
+  # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#onschedule
+  # schedule:
+  #   - cron:  '0 0 * * 1' # every monday at midnight
+
+name: Test packages
+
+jobs:
+  packages:
+    runs-on: ubuntu-latest
+    outputs:
+      pkg_names: ${{ steps.set_pkg_names.outputs.pkg_names }}
+    steps:
+    - id: set_pkg_names
+      # https://stackoverflow.com/a/32354503/591574
+      run: |
+        PKGS=`ls packages | jq -R '[.]' | jq -s -c 'add'`
+        echo "::set-output name=pkg_names::$PKGS"
+
+  test:
+    runs-on: ubuntu-latest
+
+    name: ${{ matrix.docker_type }} - ${{ matrix.pkg }}
+
+    strategy:
+      fail-fast: false
+
+      # Test using independent docker images
+      # Isolated testing so that a prior package doesn't "help" another package
+      matrix:
+        # dynamic pkg names from the `./packages` folder
+        # https://github.blog/changelog/2020-04-15-github-actions-new-workflow-features/
+        pkg: ${{ fromJson(needs.packages.outputs.pkg_names) }}
+        docker_type:
+        - bonic
+        - xenial
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build local docker file
+        run: |
+          make docker-build-${{ matrix.docker_type }}
+
+      - name: "Test package: ${{ matrix.pkg }}"
+        run: |
+          make test-${{ matrix.docker_type }}-${{ matrix.pkg }}
