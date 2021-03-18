@@ -19,17 +19,17 @@ jobs:
   packages:
     runs-on: ubuntu-latest
     outputs:
-      pkgs: ${{ steps.set_pkgs.outputs.pkgs }}
+      matrix: ${{ steps.set_matrix.outputs.matrix }}
     steps:
     - uses: actions/checkout@v2
-    - id: set_pkgs
+    - id: set_matrix
       # https://stackoverflow.com/a/32354503/591574
       run: |
         PKGS=`ls packages | jq -R '[.]' | jq -s -c 'add'`
-        echo "::set-output name=pkgs::{\"name\":$PKGS}"
+        echo "::set-output name=matrix::{\"pkg\":$PKGS, \"docker_type\":[\"bionic\", \"xenial\"]}"
     - name: debug
       run: |
-        echo "${{ steps.set_pkgs.outputs.pkgs }}"
+        echo "${{ steps.set_matrix.outputs.matrix }}"
 
   test:
     runs-on: ubuntu-latest
@@ -41,13 +41,9 @@ jobs:
 
       # Test using independent docker images
       # Isolated testing so that a prior package doesn't "help" another package
-      matrix:
-        # dynamic pkg names from the `./packages` folder
-        # https://github.blog/changelog/2020-04-15-github-actions-new-workflow-features/
-        pkg: ${{ fromJson(needs.packages.outputs.pkgs) }}
-        docker_type:
-        - bonic
-        - xenial
+      # dynamic pkg names from the `./packages` folder
+      # https://github.blog/changelog/2020-04-15-github-actions-new-workflow-features/
+      matrix: ${{fromJson(needs.packages.outputs.matrix)}}
 
     steps:
       - uses: actions/checkout@v2
