@@ -19,14 +19,17 @@ jobs:
   packages:
     runs-on: ubuntu-latest
     outputs:
-      pkg_names: ${{ steps.set_pkg_names.outputs.pkg_names }}
+      pkgs: ${{ steps.set_pkgs.outputs.pkgs }}
     steps:
     - uses: actions/checkout@v2
-    - id: set_pkg_names
+    - id: set_pkgs
       # https://stackoverflow.com/a/32354503/591574
       run: |
         PKGS=`ls packages | jq -R '[.]' | jq -s -c 'add'`
-        echo "::set-output name=pkg_names::$PKGS"
+        echo "::set-output name=pkgs::{\"name\":$PKGS}"
+    - name: debug
+      run: |
+        echo "${{ steps.set_pkgs.outputs.pkgs }}"
 
   test:
     runs-on: ubuntu-latest
@@ -41,7 +44,7 @@ jobs:
       matrix:
         # dynamic pkg names from the `./packages` folder
         # https://github.blog/changelog/2020-04-15-github-actions-new-workflow-features/
-        pkg: ${{ fromJson(needs.packages.outputs.pkg_names) }}
+        pkg: ${{ fromJson(needs.packages.outputs.pkgs) }}
         docker_type:
         - bonic
         - xenial
@@ -53,6 +56,6 @@ jobs:
         run: |
           make docker-build-${{ matrix.docker_type }}
 
-      - name: "Test package: ${{ matrix.pkg }}"
+      - name: "Test package: ${{ matrix.pkg.name }}"
         run: |
-          make test-${{ matrix.docker_type }}-${{ matrix.pkg }}
+          make test-${{ matrix.docker_type }}-${{ matrix.pkg.name }}
