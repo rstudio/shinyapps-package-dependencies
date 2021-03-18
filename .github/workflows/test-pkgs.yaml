@@ -48,6 +48,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Build docker image
+        run: |
+          make docker-build-${{ matrix.docker_type }}
+
       # Use dockerhub image
       - name: "Test package: ${{ matrix.pkg }}"
         run: |
