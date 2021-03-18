@@ -42,7 +42,7 @@ jobs:
         # https://github.blog/changelog/2020-04-15-github-actions-new-workflow-features/
         pkg: ${{ fromJson(needs.packages.outputs.pkg_names) }}
         docker_type:
-        - bionic
+        - focal
         - xenial
 
     steps:
