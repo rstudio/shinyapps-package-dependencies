@@ -36,7 +36,7 @@ for PACKAGE in $PACKAGES; do
     if [ -f $PACKAGE_DIR/install ]; then
         bash $PACKAGE_DIR/install
     else
-        Rscript "$DIR/pak/install_pkg.R" $PACKAGE
+        Rscript "$DIR/pak/install_sys_reqs.R" $PACKAGE
     fi
 
     return_code=$?

@@ -28,8 +28,17 @@ if (length(args) > 0) {
   lib <- file.path("lib", os, paste0(R.Version()$major, ".", R.Version()$minor))
   # Load pak from our tmp lib
   require("pak", character.only = TRUE, lib.loc = lib, quietly = TRUE)
+  # Prepend the pak lib path for sys req installation
+  # No pkg is actually being installed in this step
+  .libPaths(
+    c(
+      lib,
+      .libPaths()
+    )
+  )
 
   lapply(pkgs, function(pkg) {
     pak::pkg_system_requirements(pkg, execute = TRUE, sudo = TRUE)
   })
 }
+invisible()

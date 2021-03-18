@@ -43,7 +43,7 @@ for PACKAGE in $PACKAGES; do
     if [ -f $PACKAGE_DIR/install ]; then
         bash $PACKAGE_DIR/install | ts
     else
-        Rscript "$DIR/pak/install_pkg.R" $PACKAGE | ts
+        Rscript "$DIR/pak/install_sys_reqs.R" $PACKAGE | ts
     fi
 
     echo " ***** TESTING $PACKAGE..." | purple
@@ -60,6 +60,7 @@ for PACKAGE in $PACKAGES; do
     else
         echo "$PACKAGE... SUCCESS" | green
     fi
+
 done
 
 exit 0
