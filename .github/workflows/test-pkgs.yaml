@@ -1,17 +1,11 @@
 on:
   push:
     branches:
-      - main
-      - master
-      - ghactions
-      - pak
+    - master
+    - pak
   pull_request:
     branches:
-      - main
-      - master
-  # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#onschedule
-  # schedule:
-  #   - cron:  '0 0 * * 1' # every monday at midnight
+    - master
 
 name: Test packages
 
@@ -54,7 +48,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # Using dockerhub image
+      # Use dockerhub image
       - name: "Test package: ${{ matrix.pkg }}"
         run: |
           make test-${{ matrix.docker_type }}-${{ matrix.pkg }}
