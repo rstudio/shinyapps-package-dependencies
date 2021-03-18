@@ -34,30 +34,27 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    name: ${{ matrix.docker_type }} - ${{ matrix.pkg }}
+    name: ${{ matrix.pkg }} - ${{ matrix.docker_type }}
 
     needs:
     - packages
     strategy:
       fail-fast: false
 
-      # Test using independent docker images
+      # Test using independent docker containers
       # Isolated testing so that a prior package doesn't "help" another package
       matrix:
-        # dynamic pkg names from the `./packages` folder
+        # Dynamic pkg names from the `./packages` folder
         # https://github.blog/changelog/2020-04-15-github-actions-new-workflow-features/
         pkg: ${{ fromJson(needs.packages.outputs.pkg_names) }}
         docker_type:
-        - bonic
+        - bionic
         - xenial
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build local docker file
-        run: |
-          make docker-build-${{ matrix.docker_type }}
-
+      # Using dockerhub image
       - name: "Test package: ${{ matrix.pkg }}"
         run: |
           make test-${{ matrix.docker_type }}-${{ matrix.pkg }}
