@@ -22,7 +22,7 @@ os <- tryCatch({
 
 args <- commandArgs(TRUE)
 if (length(args) > 0) {
-  pkgs <- args[-1]
+  pkgs <- args
 
   # Must match install file
   lib <- file.path("lib", os, paste0(R.Version()$major, ".", R.Version()$minor))
