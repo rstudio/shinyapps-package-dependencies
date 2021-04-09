@@ -37,7 +37,6 @@ RUN apt-get update -qq && \
     libgsl0-dev \
     libmysqlclient-dev \
     libnetcdf-dev \
-    libpcre2-dev \
     libprocps4-dev \
     libproj-dev \
     libprotoc-dev \
