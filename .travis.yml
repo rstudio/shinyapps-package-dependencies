@@ -4,7 +4,6 @@ services:
   - docker
 
 env:
-  - TEST_OS=xenial
   - TEST_OS=focal
 
 script:
