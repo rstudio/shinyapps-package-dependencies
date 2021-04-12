@@ -52,5 +52,5 @@ touch packages/[r_package_name]/test.R
 
 ```bash
 make test-xenial-[r_package_name]
-make test-bionic-[r_package_name]
+make test-focal-[r_package_name]
 ```
