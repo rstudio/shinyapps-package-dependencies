@@ -7,16 +7,16 @@ R_VERSION := 4.0.4
 docker-build-%:
 	docker build -t rstudio/shinyapps-package-dependencies:$* --build-arg R_VERSION=$(R_VERSION) -f Dockerfile.$* .
 
-test-xenial-%:
+test-xenial-%: test install Dockerfile.xenial
 	docker run --rm --name spd-xenial-$* -v $(CURDIR):/shinyapps rstudio/shinyapps-package-dependencies:xenial /shinyapps/test $*
 
-test-all-xenial:
+test-all-xenial: test install Dockerfile.xenial
 	docker run --rm --name spd-xenial -v $(CURDIR):/shinyapps rstudio/shinyapps-package-dependencies:xenial /shinyapps/test
 
-test-focal-%:
+test-focal-%: test install Dockerfile.focal
 	docker run --rm --name spd-focal-$* -v $(CURDIR):/shinyapps rstudio/shinyapps-package-dependencies:focal /shinyapps/test $*
 
-test-all-focal:
+test-all-focal: test install Dockerfile.focal
 	docker run --rm --name spd-focal -v $(CURDIR):/shinyapps rstudio/shinyapps-package-dependencies:focal /shinyapps/test
 
 test-all: test-all-focal test-all-xenial
