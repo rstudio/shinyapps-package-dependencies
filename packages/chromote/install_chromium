@@ -3,6 +3,8 @@
 set -x
 set -e
 
+# See https://github.com/rstudio/shinyapps-package-dependencies/pull/302 as to why this file is not used.
+
 apt-get update -qq
 
 # On Ubuntu <= 18...
