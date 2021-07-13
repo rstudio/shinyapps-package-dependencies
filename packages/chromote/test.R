@@ -6,7 +6,7 @@ if ("chromote" %in% avail_pkgs) {
 } else {
   options(repos = c(CRAN="https://cran.rstudio.com"))
   install.packages(c("curl", "remotes"))
-  remotes::install_github("rstudio/chromote@pkg_updates", dependencies = TRUE)
+  remotes::install_github("rstudio/chromote", dependencies = TRUE)
 }
 
 
