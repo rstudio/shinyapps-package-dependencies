@@ -12,6 +12,8 @@ if ("chromote" %in% avail_pkgs) {
 
 library(chromote)
 
+print(default_chrome_args())
+
 # Make session
 b <- ChromoteSession$new()
 
