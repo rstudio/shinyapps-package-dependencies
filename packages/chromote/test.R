@@ -12,19 +12,6 @@ if ("chromote" %in% avail_pkgs) {
 
 library(chromote)
 
-set_default_chromote_object(
-  Chromote$new(
-    Chrome$new(
-      args = c(
-        "--disable-gpu",
-        "--no-sandbox",
-        "--disable-dev-shm-usage", # required bc the target easily crashes
-        c("--force-color-profile", "srgb")
-      )
-    )
-  )
-)
-
 # Make session
 b <- ChromoteSession$new()
 
