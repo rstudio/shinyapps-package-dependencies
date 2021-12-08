@@ -2,16 +2,26 @@
 set -x
 set -e
 
-OS_DISTRIBUTION=$(lsb_release -cs)
+OS_CODENAME=$(lsb_release -cs)
 
 apt-get update -qq
-apt-get install -y software-properties-common python-software-properties
+apt-get install -y software-properties-common
 
 # these sysdeps are available by default in bionic
-if [ ${OS_DISTRIBUTION} != "bionic" ]; then
+if [ ${OS_CODENAME} == "xenial" ]; then
+  apt-get install -y python-software-properties
   # PPA has recent ImageMagick versions for for Ubuntu Trusty/Xenial
-  add-apt-repository -y ppa:opencpu/imagemagick
+  add-apt-repository -y ppa:cran/imagemagick
   apt-get update -qq
 fi
 
 apt-get install -y libmagick++-dev
+
+
+if [ ${OS_CODENAME} == "focal" ]; then
+  # Enable imagemagick ghostscript features
+  # See https://www.kb.cert.org/vuls/id/332928/
+  # focal has a new enough version of ghostscript
+  sed -i "\$i \ \ <policy domain=\"coder\" rights=\"read | write\" pattern=\"{PS,PS2,PS3,EPS,PDF,XPS}\" />" /etc/ImageMagick-6/policy.xml
+fi
+

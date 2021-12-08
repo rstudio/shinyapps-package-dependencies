@@ -37,6 +37,7 @@ RUN apt-get update -qq && \
     libgsl0-dev \
     libmysqlclient-dev \
     libnetcdf-dev \
+    libpcre2-dev \
     libprocps4-dev \
     libproj-dev \
     libprotoc-dev \
@@ -130,13 +131,17 @@ RUN apt-get update -qq && \
     texlive-xetex && \
     rm -rf /var/lib/apt/lists/*
 
+RUN wget https://github.com/jgm/pandoc/releases/download/2.3.1/pandoc-2.3.1-1-amd64.deb && \
+    dpkg -i pandoc-2.3.1-1-amd64.deb && \
+    rm pandoc-2.3.1-1-amd64.deb
+
 # Set default locale
 RUN update-locale --reset LANG=C.UTF-8
 
-ARG R_VERSION=3.5.3
+ARG R_VERSION=4.0.4
 
 # Install R
-RUN wget https://cdn.rstudio.com/r/ubuntu-1604/R-${R_VERSION}-ubuntu-1604.tar.gz -O /tmp/R-${R_VERSION}.tar.gz && \
+RUN wget -q https://cdn.rstudio.com/r/ubuntu-1604/R-${R_VERSION}-ubuntu-1604.tar.gz -O /tmp/R-${R_VERSION}.tar.gz && \
     mkdir -p /opt/R && \
     tar zx -C /opt/R -f /tmp/R-${R_VERSION}.tar.gz && \
     ln -s /opt/R/${R_VERSION}/bin/R /usr/bin/R && \

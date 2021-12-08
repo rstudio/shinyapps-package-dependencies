@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -x
+set -e
+
+apt-get update -qq
+apt-get install -y coinor-libcbc-dev coinor-libclp-dev coinor-libcgl-dev libbz2-dev
