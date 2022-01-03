@@ -1,4 +1,5 @@
 # Install from CRAN
+Sys.setenv("LIBARROW_MINIMAL"="false")
 install.packages("arrow", repos = "https://cran.rstudio.com")
 
 # Run example from the manual
