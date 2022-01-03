@@ -7,4 +7,4 @@ env:
   - TEST_OS=focal
 
 script: 
-  - travis_wait 20 make test-all-$TEST_OS
+  - travis_wait make test-all-$TEST_OS
