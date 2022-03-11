@@ -23,5 +23,8 @@ if [ ${OS_CODENAME} == "focal" ]; then
   # See https://www.kb.cert.org/vuls/id/332928/
   # focal has a new enough version of ghostscript
   sed -i "\$i \ \ <policy domain=\"coder\" rights=\"read | write\" pattern=\"{PS,PS2,PS3,EPS,PDF,XPS}\" />" /etc/ImageMagick-6/policy.xml
+   # Allow higher memory use, see https://imagemagick.org/script/security-policy.php#policy
+  sed -i 's/name="memory" value="256MiB"/name="memory" value="8GiB"/' /etc/ImageMagick-6/policy.xml
+  sed -i 's/name="map" value="512MiB"/name="map" value="4GiB"/' /etc/ImageMagick-6/policy.xml
 fi
 
