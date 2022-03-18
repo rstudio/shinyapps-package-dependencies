@@ -3,8 +3,8 @@
 set -x
 set -e
 
-apt-get update -qq
-apt-get install -y bedtools tabix
+apt-get -qq update
+apt-get -qq install -y bedtools tabix
 
 wget "https://github.com/bedops/bedops/releases/download/v2.4.40/bedops_linux_x86_64-v2.4.40.tar.bz2"
 mkdir bedops
