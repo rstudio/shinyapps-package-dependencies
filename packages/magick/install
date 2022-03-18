@@ -26,5 +26,6 @@ if [ ${OS_CODENAME} == "focal" ]; then
    # Allow higher memory use, see https://imagemagick.org/script/security-policy.php#policy
   sed -i 's/name="memory" value="256MiB"/name="memory" value="4GiB"/' /etc/ImageMagick-6/policy.xml
   sed -i 's/name="map" value="512MiB"/name="map" value="8GiB"/' /etc/ImageMagick-6/policy.xml
+  sed -i 's/name="disk" value="1GiB"/name="map" value="8GiB"/' /etc/ImageMagick-6/policy.xml
 fi
 
