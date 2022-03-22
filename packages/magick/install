@@ -19,9 +19,7 @@ apt-get install -y libmagick++-dev
 
 
 if [ ${OS_CODENAME} == "focal" ]; then
-  # Enable imagemagick ghostscript features
-  # See https://www.kb.cert.org/vuls/id/332928/
-  # focal has a new enough version of ghostscript
-  sed -i "\$i \ \ <policy domain=\"coder\" rights=\"read | write\" pattern=\"{PS,PS2,PS3,EPS,PDF,XPS}\" />" /etc/ImageMagick-6/policy.xml
+  # the default policy file for debian based imagemagick is overly strict for an environment such as shinapps.io
+  # remove this file to use the default imagemagick policy.
+  rm /etc/ImageMagick-6/policy.xml
 fi
-
