@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -x
+set -e
+
+apt-get -qq update
+apt-get -qq install -y bedtools tabix
+
+wget "https://github.com/bedops/bedops/releases/download/v2.4.40/bedops_linux_x86_64-v2.4.40.tar.bz2"
+mkdir bedops
+tar jxvf bedops_linux_x86_64-v2.4.40.tar.bz2 -C bedops
+cp -n bedops/bin/* /usr/local/bin
+
