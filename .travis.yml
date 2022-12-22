@@ -5,6 +5,7 @@ services:
 
 env:
   - TEST_OS=focal
+  - TRAVIS_R_VERSION=4.2.2
 
 script: 
   - travis_wait 180 make test-all-$TEST_OS
