@@ -1,0 +1,38 @@
+---
+name: 'Shinyapps Package Dependency Tests'
+description: 'Runs all supplied tests of R package dependency installers'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - main
+    pull_request:
+
+# This allows a subsequently queued workflow run to interrupt previous runs
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+runs:
+  using: 'docker'
+  image: 'docker://rstudio/shinyapps-package-dependencies:focal'
+
+jobs:
+  list-tests:
+    outputs:
+      matrix: ${{ steps.list-tests.outputs.matrix }}
+    steps:
+      - name: List Tests
+        id: list-tests
+        uses: actions/checkout@v3
+        run: echo "::set-output name=matrix::$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')"
+  
+  test-package:
+    name: ${{ matrix.stack }}
+    needs: list-tests
+    strategy:
+      matrix: ${{fromJSON(needs.list-tests.outputs.matrix)}}
+    steps:
+      - run: make test-focal-${{ matrix.stack }}
