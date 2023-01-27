@@ -24,7 +24,7 @@ jobs:
         run: echo "matrix=$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')"
       - name: List Tests
         id: list-tests
-        run: echo 'matrix=["rsvg","gsl"]' >> $GITHUB_ENV
+        run: echo 'matrix=["rsvg","gsl"]' >> $GITHUB_OUTPUT
 
   test-package:
     name: ${{ matrix.stack }}
@@ -35,4 +35,4 @@ jobs:
     steps:
     #  - uses: actions/checkout@v3
     #  - run: make test-focal-${{ matrix.stack }}
-      - run: echo "${{ env.matrix }}"
+      - run: echo "${{ needs.list-tests.outputs.matrix }}"
