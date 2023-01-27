@@ -1,6 +1,5 @@
 ---
 name: 'Shinyapps Package Dependency Tests'
-description: 'Runs all supplied tests of R package dependency installers'
 
 on:
   workflow_dispatch:
