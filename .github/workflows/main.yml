@@ -22,9 +22,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: Print Tests
         run: echo "matrix=$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')"
-      - name: List Tests
+      - name: List Tests As Output
         id: list-tests
-        run: echo 'matrix=["rsvg","gsl"]' >> $GITHUB_OUTPUT
+        run: echo "matrix=$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')" >> $GITHUB_OUTPUT
 
   test-package:
     name: ${{ matrix.stack }}
