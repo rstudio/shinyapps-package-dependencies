@@ -30,8 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: rstudio/shinyapps-package-dependencies:focal
-    strategy:
-      matrix: ${{fromJSON(env.matrix)}}
+    #strategy:
+    #  matrix: ${{fromJSON(env.matrix)}}
     steps:
-      - uses: actions/checkout@v3
-      - run: make test-focal-${{ matrix.stack }}
+    #  - uses: actions/checkout@v3
+    #  - run: make test-focal-${{ matrix.stack }}
+      - run: echo "${{ env.matrix }}"
