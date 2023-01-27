@@ -37,4 +37,4 @@ jobs:
       image: rstudio/shinyapps-package-dependencies:focal
     steps:
       - uses: actions/checkout@v3
-      - run: make test-focal-${{ matrix.stack }}
+      - run: ./test ${{ matrix.stack }}
