@@ -30,10 +30,3 @@ jobs:
         #run: echo "::set-output name=matrix::$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')"
         run: echo '::set-output name=matrix::["rsvg"]'
   
-  test-package:
-    name: ${{ matrix.stack }}
-    needs: list-tests
-    strategy:
-      matrix: ${{fromJSON(needs.list-tests.outputs.matrix)}}
-    steps:
-      - run: make test-focal-${{ matrix.stack }}
