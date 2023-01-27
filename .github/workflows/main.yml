@@ -22,7 +22,6 @@ runs:
 jobs:
   list-tests:
     steps:
-      - uses: actions/checkout@v3
       - name: List Tests
         id: list-tests
         run: echo '::set-output name=matrix::["rsvg"]'
