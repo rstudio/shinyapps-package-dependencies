@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: List Tests
         id: list-tests
-        run: echo "::set-output name=matrix::$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')"
+        run: echo "matrix=$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')" >> $GITHUB_STATE
 
   test-package:
     name: ${{ matrix.stack }}
@@ -31,7 +31,7 @@ jobs:
     container:
       image: rstudio/shinyapps-package-dependencies:focal
     strategy:
-      matrix: ${{fromJSON(needs.list-tests.outputs.matrix)}}
+      matrix: ${{fromJSON(env.matrix)}}
     steps:
       - uses: actions/checkout@v3
       - run: make test-focal-${{ matrix.stack }}
