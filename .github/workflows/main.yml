@@ -33,9 +33,8 @@ jobs:
     strategy:
       matrix:
         stack: ${{ fromJSON(needs.list-tests.outputs.matrix) }}
-    #container:
-    #  image: rstudio/shinyapps-package-dependencies:focal
+    container:
+      image: rstudio/shinyapps-package-dependencies:focal
     steps:
-    #  - uses: actions/checkout@v3
-    #  - run: make test-focal-${{ matrix.stack }}
-      - run: echo "${{ needs.list-tests.outputs.matrix }}"
+      - uses: actions/checkout@v3
+      - run: make test-focal-${{ matrix.stack }}
