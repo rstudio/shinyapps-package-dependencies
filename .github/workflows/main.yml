@@ -20,6 +20,8 @@ jobs:
       matrix: ${{ steps.list-tests.outputs.matrix }}
     steps:
       - uses: actions/checkout@v3
+      - name: Print Tests
+        run: echo "matrix=$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')"
       - name: List Tests
         id: list-tests
         run: echo "matrix=$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')" >> $GITHUB_ENV
@@ -28,10 +30,8 @@ jobs:
     name: ${{ matrix.stack }}
     needs: list-tests
     runs-on: ubuntu-latest
-    container:
-      image: rstudio/shinyapps-package-dependencies:focal
-    #strategy:
-    #  matrix: ${{fromJSON(env.matrix)}}
+    #container:
+    #  image: rstudio/shinyapps-package-dependencies:focal
     steps:
     #  - uses: actions/checkout@v3
     #  - run: make test-focal-${{ matrix.stack }}
