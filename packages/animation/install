@@ -17,6 +17,11 @@ if [ $OS_CODENAME == "xenial" ]; then
 fi
 
 # check for supported platform (whitelisted ubuntu versions)
+
+if [ $OS_DISTRIBUTION == "trusty" ]; then
+	add-apt-repository -y ppa:mc3man/trusty-media
+fi
+
 if [ $OS_CODENAME == "xenial" ]; then
 	add-apt-repository ppa:jonathonf/ffmpeg-4
 fi
