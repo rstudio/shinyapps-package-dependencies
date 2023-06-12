@@ -4,4 +4,5 @@ set -x
 set -e
 
 apt-get update -qq
-apt-get install -y libtesseract-dev libleptonica-dev tesseract-ocr-eng tesseract-ocr-fra
+apt-get install -y libtesseract-dev libleptonica-dev tesseract-ocr-eng tesseract-ocr-fra \
+  poppler-utils libpoppler-cpp-dev
