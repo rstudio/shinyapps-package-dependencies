@@ -9,7 +9,7 @@ To contribute to this repository, read [CONTRIBUTING.md](https://github.com/rstu
 
 If you'd like to request the addition of support of a specific R package, [open a github issue](https://github.com/rstudio/shinyapps-package-dependencies/issues).
 
-[![Build Status](https://travis-ci.com/rstudio/shinyapps-package-dependencies.svg?branch=master)](https://travis-ci.com/rstudio/shinyapps-package-dependencies)
+[![Shinyapps Package Dependency Tests](https://github.com/rstudio/shinyapps-package-dependencies/actions/workflows/main.yml/badge.svg)](https://github.com/rstudio/shinyapps-package-dependencies/actions/workflows/main.yml)
 
 ## License
 
