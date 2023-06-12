@@ -5,7 +5,7 @@
 
 # to make sure that the test cleans up after itself, all tests are wrapped in withr
 install.packages("withr", repos = "https://cran.rstudio.com")
-path <- file.path("shinyapps", "packages", "pensieve")
+path <- file.path("packages", "pensieve")
 
 # test pdf2svg
 withr::with_dir(new = path, code = {
