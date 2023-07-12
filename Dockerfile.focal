@@ -55,7 +55,8 @@ RUN apt-get update -qq && \
     tdsodbc \
     unixodbc \
     unixodbc-dev \
-    wget && \
+    wget \
+    zip && \
     rm -rf /var/lib/apt/lists/*
 
 # Note: myodbc is not available for focal: https://launchpad.net/myodbc
