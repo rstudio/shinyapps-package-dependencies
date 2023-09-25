@@ -19,6 +19,10 @@ apt-get install -qq -y moreutils
 
 DIR=`dirname $0`
 
+# Make the repo root, wherever it got mounted in, the current directory.
+# Helps tests that read/write test fixture files to find them.
+cd "${DIR}" || exit 1
+
 if [ $# -eq 0 ]; then
     PACKAGES=$(ls -1 -d $DIR/packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename)
 else

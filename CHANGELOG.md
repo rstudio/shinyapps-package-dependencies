@@ -1,3 +1,16 @@
+## September 22nd 2023
+
+### Added
+ * Dockerfile and `make` / CI configurations for an Ubuntu jammy (22.04)-based environment.
+
+### UPDATED
+ * Updated packages as necessary to support jammy as a base OS.
+    * `dockxtractr` is available in jammy, but the installation currently supports .docx only, not .doc.
+
+### REMOVED
+ * `magick` no longer needs any extra packages installed to function properly.
+ * `convertGraph` was removed from CRAN and has only one archived release from 2016, so is not being supported in this repository.
+
 ## March 15th 2021
 
 ### UPDATED

@@ -27,14 +27,15 @@ jobs:
         run: echo "matrix=$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')" >> $GITHUB_OUTPUT
 
   test-package:
-    name: ${{ matrix.stack }}
+    name: ${{ matrix.stack }} on ${{ matrix.os }}
     needs: list-tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
         stack: ${{ fromJSON(needs.list-tests.outputs.matrix) }}
+        os: [focal, jammy]
     container:
-      image: rstudio/shinyapps-package-dependencies:focal
+      image: rstudio/shinyapps-package-dependencies:${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - run: ./test ${{ matrix.stack }}

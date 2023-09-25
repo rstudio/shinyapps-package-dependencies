@@ -1,5 +1,4 @@
 FROM ubuntu:focal
-MAINTAINER RStudio Docker <docker@rstudio.com>
 
 # update apt & install packages
 RUN apt-get update -qq && \

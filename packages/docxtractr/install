@@ -7,8 +7,5 @@ if [ "${OS_CODENAME}" == "focal" ]; then
   echo "docxtractr is not supported on Ubuntu 20.04 due to: https://github.com/rstudio/shinyapps-package-dependencies/issues/282"
 else
   apt-get update -qq
-  apt-get install -y software-properties-common
-  add-apt-repository ppa:libreoffice/ppa
-  apt-get update -qq
-  apt-get install -y libreoffice
+  apt-get install -y --no-install-recommends libreoffice
 fi
