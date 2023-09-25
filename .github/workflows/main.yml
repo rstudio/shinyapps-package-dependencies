@@ -33,8 +33,9 @@ jobs:
     strategy:
       matrix:
         stack: ${{ fromJSON(needs.list-tests.outputs.matrix) }}
+        os: [focal, jammy]
     container:
-      image: rstudio/shinyapps-package-dependencies:focal
+      image: rstudio/shinyapps-package-dependencies:${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - run: ./test ${{ matrix.stack }}
