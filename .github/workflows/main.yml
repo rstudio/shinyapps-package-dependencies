@@ -21,10 +21,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Print Tests
-        run: echo "matrix=$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')"
+        run: echo "matrix=$(./test-list.sh | jq -Rsc '. / "\n" - [""]')"
       - name: List Tests As Output
         id: list-tests
-        run: echo "matrix=$(ls -1 -d packages/* | grep -v gsl | tr '\n' '\0' | xargs -0 -n 1 basename | jq -Rsc '. / "\n" - [""]')" >> $GITHUB_OUTPUT
+        run: echo "matrix=$(./test-list.sh | jq -Rsc '. / "\n" - [""]')" >> $GITHUB_OUTPUT
 
   test-package:
     name: ${{ matrix.stack }} on ${{ matrix.os }}
