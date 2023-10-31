@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -ex
+
+# the default policy file for debian based imagemagick is overly strict for an environment such as shinapps.io
+# remove this file to use the default imagemagick policy.
+rm /etc/ImageMagick-6/policy.xml
