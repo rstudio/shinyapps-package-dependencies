@@ -1,3 +1,16 @@
+## October 31st 2023
+
+### Added
+ * Convention to mark packages as no longer officially supported. Packages with an `UNSUPPORTED` file
+   in their directory will not be subject to testing, but may still work for you, espeically if your
+   application uses an old version of the package.
+
+   Packages may be marked unsupported for a variety of reasons, but commonly because they have been
+   removed from CRAN.
+
+### Removed
+ * `rgdal` is marked unsupported because it was removed from CRAN.
+
 ## September 22nd 2023
 
 ### Added
