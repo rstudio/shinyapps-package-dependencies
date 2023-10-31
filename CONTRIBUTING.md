@@ -48,9 +48,8 @@ touch packages/[r_package_name]/test.R
 
 5. Write this R script to install the R package and run some basic code to ensure that the package is installed correctly and functional.
 
-4. Test your install by running these commands:
+4. Test your install by running this command:
 
 ```bash
-make test-xenial-[r_package_name]
-make test-focal-[r_package_name]
+make test-jammy-[r_package_name]
 ```
