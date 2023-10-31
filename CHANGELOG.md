@@ -9,7 +9,7 @@
    removed from CRAN.
 
 ### Removed
- * `rgdal` is marked unsupported because it was removed from CRAN.
+ * `rgdal` and `rgeos` is marked unsupported because they were removed from CRAN.
 
 ## September 22nd 2023
 
