@@ -62,6 +62,8 @@ RUN apt-get update -qq && \
     unixodbc-dev \
     wget \
     zip && \
+    # https://github.com/rstudio/lucid-images-shiny/issues/311
+    rm -f /etc/ImageMagick-6/policy.xml && \
     rm -rf /var/lib/apt/lists/*
 
 # Install the RStudio Professional Drivers (includes mysql drivers)
