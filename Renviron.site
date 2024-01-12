@@ -2,5 +2,3 @@ LANG=C.UTF-8
 
 # Otherwise timedatectl will get called which leads to 'no systemd' inside Docker
 TZ=UTC
-
-R_LIBS_USER=/usr/lib/R
