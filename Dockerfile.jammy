@@ -91,10 +91,10 @@ RUN wget -q https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.1-lin
     rm julia-1.9.1-linux-x86_64.tar.gz
 
 # Install of texlive. Use --no-install-recommends to avoid installing ~750MB of documentation
-RUN apt-get update -qq && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    texlive-full && \
-    rm -rf /var/lib/apt/lists/*
+# RUN apt-get update -qq && \
+#     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+#     texlive-full && \
+#     rm -rf /var/lib/apt/lists/*
 
 
 # add in the less secure openssl config file
@@ -117,11 +117,10 @@ COPY Renviron.site /etc/R/Renviron.site
 
 ARG R_VERSION=4.3.1
 
+ENV PATH /opt/R/${R_VERSION}/bin:$PATH
+
 # Install R
 RUN wget -q https://cdn.rstudio.com/r/ubuntu-2204/R-${R_VERSION}-ubuntu-2204.tar.gz -O /tmp/R-${R_VERSION}.tar.gz && \
     mkdir -p /opt/R && \
     tar zx -C /opt/R -f /tmp/R-${R_VERSION}.tar.gz && \
-    ln -s /opt/R/${R_VERSION}/bin/R /usr/bin/R && \
-    ln -s /opt/R/${R_VERSION}/bin/Rscript /usr/bin/Rscript && \
-    ln -s /opt/R/${R_VERSION}/lib/R /usr/lib/R && \
     rm /tmp/R-${R_VERSION}.tar.gz
