@@ -4,5 +4,3 @@ set -e
 
 apt-get update -qq
 apt-get install bzip2 libbz2-dev
-
-R CMD javareconf
