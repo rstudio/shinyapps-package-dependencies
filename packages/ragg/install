@@ -3,4 +3,4 @@ set -x
 set -e
 
 apt-get update -qq
-apt-get install -y libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libharfbuzz-dev libfribidi-dev
+apt-get install -y fonts-noto-color-emoji libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libharfbuzz-dev libfribidi-dev
