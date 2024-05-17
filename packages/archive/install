@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -x
+set -e
+
+apt-get update -qq
+apt-get install libarchive-dev
+
