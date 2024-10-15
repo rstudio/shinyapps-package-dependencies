@@ -4,5 +4,5 @@ set -x
 set -e
 
 apt-get update -qq
-apt-get install libarchive-dev
+apt-get install -y libarchive-dev
 
