@@ -3,8 +3,7 @@ install.packages("Cairo", repos = "https://cran.rstudio.com")
 
 library("Cairo")
 
-Cairo(5,5)
-
-CairoPNG(filename = "nice.png", width = 600, height = 600)
-
-dev.off()
+if (!Cairo.capabilities()["harfbuzz"]) {
+  cat("Error: Harfbuzz is not available. This script requires harfbuzz.\n")
+  quit(status = 1)
+} 

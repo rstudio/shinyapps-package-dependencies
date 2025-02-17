@@ -3,4 +3,4 @@ set -x
 set -e
 
 apt-get update -qq
-apt-get install -y libharfbuzz-icu0 
+apt-get install -y pkg-config libharfbuzz-dev libharfbuzz-icu0 
