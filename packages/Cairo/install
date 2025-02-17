@@ -2,7 +2,5 @@
 set -x
 set -e
 
-OS_CODENAME=$(lsb_release -cs)
-
 apt-get update -qq
 apt-get install -y libharfbuzz-icu0 
