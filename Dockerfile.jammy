@@ -61,6 +61,10 @@ RUN apt-get update -qq && \
     unixodbc \
     unixodbc-dev \
     wget \
+    libspatialindex-dev \
+    libgeos-dev \
+    g++ \
+    python3-dev \
     zip && \
     rm -f /etc/ImageMagick-6/policy.xml && \
     rm -rf /var/lib/apt/lists/*

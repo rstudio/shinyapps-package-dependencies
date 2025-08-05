@@ -34,7 +34,39 @@ RUN apt-get update -qq && \
     libcairo2 \
     libcairo2-dev \
     libfftw3-dev \
+    libgdal-dev \RUN apt-get update -qq && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    gdebi-core \
+    jags \
+    libaio1 \
+    libatlas3-base \
+    libcairo2 \
+    libcairo2-dev \
+    libfftw3-dev \
     libgdal-dev \
+    libproj-dev \
+    libspatialindex-dev \
+    libgeos-dev \
+    g++ \
+    python3-dev \
+    libgraphviz-dev \
+    libgsl0-dev \
+    libmysqlclient-dev \
+    libnetcdf-dev \
+    libpcre2-dev \
+    libprocps-dev \
+    libprotoc-dev \
+    libquantlib0-dev \
+    libsasl2-dev \
+    libssh-dev \
+    libsqliteodbc \
+    libxml2-dev \
+    libxt-dev \
+    libxt6 \
+    libspatialindex-dev \
+    libgeos-dev \
+    g++ \
+    python3-dev
     libgraphviz-dev \
     libgsl0-dev \
     libmysqlclient-dev \
