@@ -1,11 +1,11 @@
 PACKAGE_DIRS := $(wildcard packages/*)
 PACKAGES := $(notdir ${PACKAGE_DIRS})
 PACKAGE_TESTS := $(PACKAGES:%=test-%)
-R_VERSION := 4.3.1
+R_VERSION := 4.5.3
 
 # Docker image is built on Docker Hub https://hub.docker.com/repository/docker/rstudio/shinyapps-package-dependencies/
 docker-build-%:
-	docker build -t rstudio/shinyapps-package-dependencies:$* --build-arg R_VERSION=$(R_VERSION) -f Dockerfile.$* .
+	docker build --platform linux/amd64 -t rstudio/shinyapps-package-dependencies:$* --build-arg R_VERSION=$(R_VERSION) -f Dockerfile.$* .
 
 test-jammy-%:
 	docker run --rm --name spd-jammy-$* -v $(CURDIR):/shinyapps rstudio/shinyapps-package-dependencies:jammy /shinyapps/test $*
