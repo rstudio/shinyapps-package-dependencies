@@ -31,11 +31,14 @@ jobs:
     needs: list-tests
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         stack: ${{ fromJSON(needs.list-tests.outputs.matrix) }}
         os: [jammy]
     container:
       image: rstudio/shinyapps-package-dependencies:${{ matrix.os }}
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - run: ./test ${{ matrix.stack }}
