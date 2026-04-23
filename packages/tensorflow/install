@@ -5,3 +5,7 @@ set -e
 
 pip3 install --upgrade tensorflow keras scipy h5py pyyaml requests Pillow
 
+# Point reticulate at the system Python where tensorflow was just installed.
+# Newer reticulate otherwise tries to provision its own uv-managed env.
+echo "RETICULATE_PYTHON=/usr/bin/python3" >> /etc/R/Renviron.site
+
