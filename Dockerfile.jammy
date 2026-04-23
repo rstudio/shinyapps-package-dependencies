@@ -66,10 +66,10 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists/*
 
 # Install the RStudio Professional Drivers (includes mysql drivers)
-RUN wget -q https://cdn.rstudio.com/drivers/7C152C12/installer/rstudio-drivers_2023.05.0_amd64.deb && \
-    gdebi -n rstudio-drivers_2023.05.0_amd64.deb && \
+RUN wget -q https://cdn.rstudio.com/drivers/7C152C12/installer/rstudio-drivers_2024.03.0_amd64.deb -O /tmp/rstudio-drivers.deb && \
+    gdebi -n /tmp/rstudio-drivers.deb && \
     cat /opt/rstudio-drivers/odbcinst.ini.sample >> /etc/odbcinst.ini  && \
-    rm rstudio-drivers_2023.05.0_amd64.deb
+    rm /tmp/rstudio-drivers.deb
 
 # Install JDK and Cargo separately to avoid the recommended packages
 RUN apt-get update -qq && \
@@ -115,7 +115,7 @@ RUN update-locale --reset LANG=C.UTF-8
 ENV R_ENVIRON /etc/R/Renviron.site
 COPY Renviron.site /etc/R/Renviron.site
 
-ARG R_VERSION=4.3.1
+ARG R_VERSION=4.5.3
 
 ENV PATH /opt/R/${R_VERSION}/bin:$PATH
 
