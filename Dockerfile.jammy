@@ -53,6 +53,7 @@ RUN apt-get update -qq && \
     libsasl2-dev \
     libssh-dev \
     libsqliteodbc \
+    libuv1-dev \
     libxml2-dev \
     libxt-dev \
     libxt6 \
