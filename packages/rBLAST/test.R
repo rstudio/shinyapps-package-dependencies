@@ -1,6 +1,6 @@
-install.packages(c("devtools","BiocManager"), repos="https://cran.rstudio.com")
-BiocManager::install("Biostrings")
-devtools::install_github("mhahsler/rBLAST")
+install.packages(c("BiocManager"), repos="https://cran.rstudio.com")
+BiocManager::install(version = "3.22")
+BiocManager::install("rBLAST")
 library(rBLAST)
 rBLAST::blast_help()
 
