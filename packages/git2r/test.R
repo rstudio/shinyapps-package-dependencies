@@ -1,0 +1,6 @@
+install.packages("git2r")
+library(git2r)
+path <- tempfile(pattern="git2r-")
+dir.create(path)
+repo <- init(path)
+print(config(repo))
