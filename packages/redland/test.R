@@ -1,4 +1,4 @@
-install.packages("redland", repos = "http://cran.us.r-project.org")
+install.packages("redland", repos = "https://cran.rstudio.com")
 
 library(redland)
 world <- new("World")
